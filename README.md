@@ -1,4 +1,4 @@
-# OpenCart
+# WeizePHP 3.0
 
 ## Overview(概观)
 
@@ -18,14 +18,13 @@ E-mail: 310472156@qq.com
 
 ## License(协议)
 
-MIT License           | https://opensource.org/licenses/MIT
+MIT License | https://opensource.org/licenses/MIT
 
 ## Links(链接)
 
-php                   | http://php.net
-MySQL                 | http://www.mysql.com
-
-jquery-v1.11.3        | https://github.com/jquery/jquery
-bootstap-v3.3.6       | https://github.com/twbs/bootstrap
-JavaScript-MD5-v2.3.0 | https://github.com/blueimp/JavaScript-MD5
-UEditor-v1.4.3.3      | http://ueditor.baidu.com
+php | http://php.net \<br>
+MySQL | http://www.mysql.com \<br>
+jquery-v1.11.3 | https://github.com/jquery/jquery \<br>
+bootstap-v3.3.6 | https://github.com/twbs/bootstrap \<br>
+JavaScript-MD5-v2.3.0 | https://github.com/blueimp/JavaScript-MD5 \<br>
+UEditor-v1.4.3.3 | http://ueditor.baidu.com

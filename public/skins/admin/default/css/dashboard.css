@@ -1,0 +1,129 @@
+@CHARSET "UTF-8";
+
+/* Reset */
+body { padding-top: 50px; }
+a:link,a:visited { color:#006600; text-decoration:none; }
+a:hover { text-decoration:underline; color:#FF6600; }
+
+/* Top */
+.w-dashboard-navbar {
+	background-color: #008800;
+	border-color: #004400;
+}
+
+.w-dashboard-navbar .navbar-brand,
+.w-dashboard-navbar .navbar-collapse li .dropdown-toggle { text-align: center; color: #FFFFFF; }
+
+.w-dashboard-navbar .navbar-nav > .open > a,
+.w-dashboard-navbar .navbar-nav > .open > a:focus,
+.w-dashboard-navbar .navbar-nav > .open > a:hover,
+.w-dashboard-navbar .navbar-header .navbar-toggle:focus,
+.w-dashboard-navbar .navbar-header .navbar-toggle:hover { background-color: #006600; }
+
+.w-dashboard-navbar .container-fluid .navbar-collapse,
+.w-dashboard-navbar .navbar-header .navbar-toggle { border-color: #006600; }
+
+/* Sidebar */
+.w-sidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #EFF4E9;
+    border-right: 1px solid #eee;
+}
+.w-nav-block h4 {
+	color: #009900;
+}
+.w-nav-block .nav-sidebar {
+    margin-right: -21px;
+    margin-bottom: 20px;
+    margin-left: -20px;
+}
+.w-nav-block .nav-sidebar > li > a {
+    /*padding-right: 20px;
+    padding-left: 20px;*/
+	padding: 5px 10px 5px 28px;
+	color: #006600;
+	color: #808040;
+}
+.w-nav-block .nav-sidebar > .active > a,
+.w-nav-block .nav-sidebar > .active > a:hover,
+.w-nav-block .nav-sidebar > .active > a:focus {
+    color: #FF6600;
+	/*color: #FFFFFF;
+    background-color: #009900;*/
+}
+
+/* Main */
+.w-main {
+    padding: 20px;
+}
+@media (min-width: 768px) {
+    .w-main {
+        padding-right: 40px;
+        padding-left: 40px;
+    }
+}
+.w-main .page-header {
+    margin-top: 0;
+}
+
+.w-mt-0 { margin-top: 0px; }
+.w-row, .w-mb-10 { margin-bottom: 10px; }
+
+.w-h4, .w-table .w-thead tr th {
+	border-bottom: 1px solid #CBE6BD;
+	background-color: #EFF4E9;
+	color: #090;
+}
+.w-table tbody tr td { border-top: 1px dotted #CBE6BD; }
+.w-h4 {
+	margin-top: 0;
+	padding: 8px;
+	line-height: 20px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.w-form label {}
+
+.w-table .w-thead-1 tr th { border-bottom: 1px solid #CBE6BD; }
+
+a.w-a-btn { color: #fff; }
+
+.w-checkbox-inline {
+	font-weight: bold;
+}
+
+.w-role-form-inline {
+	border-bottom: 1px dotted #CBE6BD;
+	padding-bottom: 10px;
+}
+
+/* 角色权限分配 */
+.rolepermissionassign-title .checkbox-inline {
+	line-height:24px;
+	font-weight: bold;
+}
+.rolepermissionassign-ul, .rolepermissionassign-ul li {
+	margin: 0px;
+	padding: 0px;
+}
+.rolepermissionassign-ul li {
+	list-style: none;
+	float: left;
+	border-right: 1px dotted #CBE6BD;
+	width: 200px;
+	margin-right: 10px;
+	line-height: 24px;
+}
+
+/* ----------------------------------------------------- */
+
+/* Home */

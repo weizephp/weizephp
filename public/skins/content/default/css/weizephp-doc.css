@@ -1,0 +1,43 @@
+@CHARSET "UTF-8";
+/**
+ * +----------------------------------------------------------------------
+ * | WeizePHP framework
+ * +----------------------------------------------------------------------
+ * | Copyright (c) 2013-2113 http://weizephp.75hh.com/ All rights reserved.
+ * +----------------------------------------------------------------------
+ * | Author: Ze Wei <E-mail:weizesw@gmail.com> <QQ:310472156>
+ * +----------------------------------------------------------------------
+ */
+
+body {
+	padding-top: 70px;
+	padding-bottom: 30px;
+}
+/*a:link, a:visited {
+	color: #006600;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+	color: #FF6600;
+}*/
+
+.w-theme-title {
+	color: #006600;
+}
+
+.navbar-inverse {
+	background-color: #009900;
+	border-color: #008800;
+}
+.navbar-inverse .navbar-brand,
+.navbar-inverse .navbar-nav > li > a {
+	color: #FFFFFF;
+}
+.navbar-inverse .navbar-nav > li > a:hover {
+	color: #B4CDCD;
+}
+
+.w-home-alert {
+	height: 162px;
+}

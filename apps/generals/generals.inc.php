@@ -30,7 +30,7 @@ if(in_array($_W['permission_flag'], $cur_app_guest_permission)) {
 		$accesstoken_on = false;
 	}
 	if( w_user::check_access_permission() == false ) {
-		if($accesstoken_on == true) {
+		if($accesstoken_on == true || $_W['ajaxrequest'] == 1 || ($_W['module'] == 'upload' && $_W['action'] == 'upload')) {
 			exit('{"status":0, "msg":"Not permission"}');
 		}
 		if($_W['module'] == 'ueditor') {

@@ -351,7 +351,7 @@ if( empty($_W['protocol']) ) {
 }
 
 $_W['script_dir'] = dirname($_SERVER['SCRIPT_NAME']);
-if($_W['script_dir'] == '\\') {
+if($_W['script_dir'] == '\\' || $_W['script_dir'] == '/') {
     $_W['script_dir'] = '/';
 } else {
     $_W['script_dir'] = $_W['script_dir'] . '/';

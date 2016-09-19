@@ -37,7 +37,7 @@
 		    	<div class="col-sm-4">
 		    		<div role="alert" class="alert alert-danger w-home-alert">
 						<h4>版权</h4>
-						<p>版权归大家所有（第三方的插件除外哦），想怎么用，就怎么用。</p>
+						<p>软件使用相对宽松的MIT协议，可以自由的商用啦^_^。</p>
 					</div>
 		    	</div>
 		    	<div class="col-sm-4">

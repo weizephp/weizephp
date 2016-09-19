@@ -19,6 +19,9 @@ switch ($action) {
         //------------------
         // 控制插入到编辑器的路径 By WeizePHP
         $CONFIG['imageUrlPrefix']        = dirname($_SERVER['SCRIPT_NAME']);
+		if($CONFIG['imageUrlPrefix'] == '\\' || $CONFIG['imageUrlPrefix'] == '/') {
+			$CONFIG['imageUrlPrefix'] = "";
+		}
         $CONFIG['scrawlUrlPrefix']       = $CONFIG['imageUrlPrefix'];
         $CONFIG['snapscreenUrlPrefix']   = $CONFIG['imageUrlPrefix'];
         $CONFIG['catcherUrlPrefix']      = $CONFIG['imageUrlPrefix'];

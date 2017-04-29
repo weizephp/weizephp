@@ -1,0 +1,75 @@
+@charset "utf-8";
+/*
+ * 前台内容样式
+ */
+
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+}
+a {
+    color: #337ab7;
+    text-decoration: none;
+}
+
+
+/*
+文章和单页
+-------------------------- */
+.a-s-container {
+	margin-right: auto;
+	margin-left: auto;
+	padding: 18px 15px 10px 15px;
+}
+
+.a-s-breadcrumb {
+    padding: 8px 15px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    list-style: none;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+}
+.a-s-breadcrumb li {
+    display: inline-block;
+}
+
+.a-s-h1 {
+	color: #18bc9c;
+    margin-bottom: 5px;
+}
+.a-s-time-source {
+    font: 12px/1 Arial, "Sim sun";
+    color: #888;
+    padding-bottom: 6px;
+}
+
+.a-s-body p {
+	font-size: 18px;
+	margin-bottom: 1.46em;
+	line-height: 1.62em;
+}
+.a-s-body img {
+	max-width: 100%;
+	height: auto;
+	margin: 0.2em 0;
+}
+.a-s-cl-1 {
+	color: #B22222;
+}
+
+.a-s-footer {
+    border-top: 1px solid #f3f3f3;
+    color: #AAA;
+}
+
+/*
+媒体响应式
+-------------------------- */
+@media (min-width: 767px) {
+	.a-s-container {
+		width: 700px;
+	}
+}

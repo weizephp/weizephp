@@ -1,0 +1,60 @@
+@CHARSET "UTF-8";
+/* 重置浏览器样式 */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td { margin: 0px; padding: 0px; }
+table { border-collapse: collapse; border-spacing: 0px; }
+li { list-style: none; }
+img { vertical-align: top; border: 0px; }
+h1, h2, h3, h4, h5, h6 { font-size: 100%; }
+
+body { font: 14px/100% Arial,\5b8b\4f53,sans-serif; }
+
+.clearfix:after { clear: both; content: "\0020"; display: block; height: 0px; line-height: 0px; visibility: hidden; }
+.clearfix { zoom: 1; }
+.clear { display: block; height: 0px; line-height: 0px; font-size: 0px; overflow: hidden; }
+
+.transparent { filter: alpha(opacity=50); -moz-opacity: 0.5; -khtml-opacity: 0.5; opacity: 0.5; } /* 半透明度 */
+
+/* 系统安装向导 */
+body { padding:15px 0; }
+body, td, input, textarea, select, button{ color:#666; font:12px/1.5 Verdana, Tahoma, Arial, 'Microsoft Yahei', 'Simsun', sans-serif; }
+
+.container { width:700px; margin:0 auto; border:1px solid #CBE6BD; }
+
+/* 颜色 */
+.color_red { color:#F00; }
+
+/* 头部 */
+.header { background-color:#EFF4E9; height:50px; border-bottom:1px solid #CBE6BD; }
+    .header h1 { padding:5px; font-size:24px; font-weight:bold; color:#009900; }
+	
+/* 操作步骤标题 */
+.setup h2 { color:#6CA1B4; font-size:36px; text-align:center; }
+
+/* 页面主体 */
+.main { padding:20px 20px 10px; }
+.licenseblock { margin-bottom:15px; padding:8px; height:280px; border:1px solid #EEE; background:#FFF; overflow:scroll; overflow-x:hidden; }
+.license{}
+	.license h1 { padding-bottom:10px; font-size:14px; text-align:center; }
+	.license h3 { margin:0; color:#666; }
+	.license p { line-height:150%; margin:10px 0; text-indent:25px; }
+	.license li { line-height:150%; margin:5px 0; }
+.title { margin:5px 0 -15px 60px; }
+
+/* 操作步骤 */
+.tb_box { margin:0 auto; }
+.tb_box_w400 { width:400px; }
+
+/* 表格 */
+.td_w100 { width:100px; }
+.td_w150 { width:150px; }
+.td_w200 { width:200px; }
+.tb { margin-bottom:10px; }
+.tb th, .tb td { padding:5px; }
+.tb th { border-bottom:1px dotted #CBE6BD; text-align:left; color:#009900; }
+
+/* 表单 */
+.form_box { text-align:center; }
+.tb input { padding:3px 5px 5px 5px; color:#000000; }
+
+/* 尾部 */
+.footer{ height:30px; line-height:20px; text-align:center; font-size:11px; }

@@ -1,0 +1,701 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+        <title>WeizePHP文档手册</title>
+        <meta name="keywords" content="WeizePHP文档手册"/>
+        <meta name="description" content="WeizePHP文档手册，旨在方便开发者随时查阅。"/>
+        <style type="text/css">
+        html,body{height:100%}
+        body{max-width:800px;font-family:"Work Sans",sans-serif;margin:0 auto;line-height:1.7;font-size:20px;color:#333;padding:2em 1em;text-rendering:optimizeLegibility;height:100%}
+        @media screen and (max-width: 600px){body{max-width:100%;padding:1em}}
+        h1,h2,h3,h4,h5,h6{font-family:"Lato", "Helvetica Neue", Helvetica, sans-serif;font-weight:bold;line-height:1.8;margin:0;text-transform:capitalize}
+        a{color:#60c17d;text-decoration:none}
+        a:hover{color:#333}
+        p a{color:#333;text-decoration:none;background:-webkit-linear-gradient(transparent 90%, #85cf9b 10%);box-shadow:inset 0 0 0 0 #85cf9b;-webkit-transition:box-shadow ease 1s;-moz-transition:box-shadow ease 1s;transition:box-shadow ease 1s}
+        p a:hover{color:#fff;box-shadow:inset 0 -100px 0 0 #85cf9b}
+        figure{margin:0}
+        img{max-width:100%}
+        pre,code{overflow:auto;font-size:14px;border-radius:3px;border:1px solid #60c17d}
+        pre>code,code>code{border:none}
+        pre{padding:1em}
+        code{padding:0.1em}
+        blockquote{border-left:2px solid #60c17d;padding-left:1em;font-family:Georgia,Times,Times New Roman,serif;font-size:18px;font-style:italic}
+        
+        .headline{font-size:4em}
+        @media screen and (max-width: 600px){.headline{font-size:2em}}
+        
+        .post-headline{font-size:4em}
+        @media screen and (max-width: 600px){.post-headline{font-size:1.5em}}
+        
+        .home{background-image:url(./public/images/left-arrow.svg);background-repeat:no-repeat;height:40px;width:40px;opacity:0.9;position:fixed;top:50px;left:50px}
+        .home:hover{opacity:1}
+        @media screen and (max-width: 1000px){.home{top:90%;left:90%;height:30px;width:30px;opacity:0.6}}
+        
+        .video{width:100%;height:360px}
+        @media screen and (max-width: 1000px){.video{height:300px}}
+        @media screen and (max-width: 600px){.video{height:180px}}
+        
+        #markdown-toc::before{content:"内容索引";font-weight:bold}
+        #markdown-toc ul{list-style:decimal}
+        #markdown-toc{border:1px solid #60c17d;padding:1.5em 2.2em;list-style:decimal;display:inline-block}
+        
+        .red{color:#FF0000}
+        
+        .tb_lib{width:100%;border-collapse:collapse;margin:0 auto}
+        .tb_lib th,.tb_lib td{padding:6px;border:1px solid #000}
+        .tb_lib th{background-color:#60c17d;text-align:left;color:#FFF}
+        .tb_lib tr.hover td{background-color:#C1FFC1}
+        
+        .ft-p{font-size:12px;color:#ccc}
+        </style>
+    </head>
+    <body>
+        <header>
+            <a id="docs-back-btn" href="./"><div class="home"></div></a>
+        </header>
+        
+        <h1 class="post-headline">WeizePHP 文档</h1>
+        <div class="meta"><span>2017-04-20 19:42:00</span></div>
+        
+        <ul id="markdown-toc">
+            <li>
+                <a href="#overview">概览:</a>
+                <ul>
+                    <li><a href="#overview-01">缺点</a></li>
+                    <li><a href="#overview-02">优点</a></li>
+                </ul>
+            </li>
+            <li><a href="#community">使用交流</a></li>
+            <li><a href="#directory">框架目录结构</a></li>
+            <li><a href="#getting-started">快速入门（动手写自己的 Hello world! 包含后台菜单添加）</a></li>
+            <li><a href="#single-entrance">单一入口说明</a></li>
+            <li><a href="#reference">常量、变量、函数、类库、JS</a></li>
+            <li><a href="#rewrite">添加伪静态示例</a></li>
+            <li><a href="#code-rule">编码规范</a></li>
+            <li><a href="#database">数据表字典</a></li>
+            <li><a href="#license">许可协议</a></li>
+        </ul>
+        
+        
+        <!-- Overview -->
+        <h1 id="overview">概览</h1>
+        <p>WeizePHP是一款超小的PHP框架，使用MIT协议，您可以免费自由的应用于商业。她有后台、有权限管理、有完整的开发手册。入门简单，只要会php语法，就可以快速的开发各种应用和网站^_^。</p>
+        <p>目前常用于开发各类 <code>网站</code>、<code>企业管理系统</code>、<code>手机APP接口</code>...</p>
+        <h3 id="overview-01">缺点</h3>
+        <p>负责任的告诉你，WeizePHP框架有一定的局限性，特殊的需求，可能需要修改核心代码。核心代码就几行而已，想怎么改，就怎么改。</p>
+        <h3 id="overview-02">优点</h3>
+        <p>简单、易用、好维护！！！</p>
+        
+        <h1 id="community">使用交流</h1>
+        <p>QQ群：297634163(WeizePHP框架)</p>
+        <p>E-mail：weizesw@gmail.com / 310472156@qq.com</p>
+        <p>QQ：310472156</p>
+        
+        
+        <!-- Directory -->
+        <h1 id="directory">目录结构</h1>
+        <figure class="highlight"><pre><code class="language-php" data-lang="php">./app                      // 应用目录
+
+./app/admin                // 后台应用
+./app/admin/article        // 文章管理
+./app/admin/home           // 后台首页
+./app/admin/login          // 后登陆模块
+./app/admin/nav            // 导航管理
+./app/admin/singlepage     // 单页管理
+./app/admin/system         // 系统管理
+./app/admin/user           // 用户管理
+
+./app/appapi               // APP接口应用
+./app/appapi/login         // APP登陆接口
+
+./app/content              // 内容应用（系统默认加载的应用）
+./app/content/article      // 内容文章模块
+./app/content/home         // 内容首页（系统默认首页）
+./app/content/singlepage   // 内容单页模块
+
+./app/general              // 通用应用
+./app/general/captcha      // 通用验证码模块
+./app/general/ueditor      // 通用ueditor服务端模块
+./app/general/upload       // 通用上传模块
+
+./app/member               // 会员应用
+
+./data                     // 数据目录
+./data/backup_*            // 备份目录
+./data/cache               // 缓存目录
+./data/log                 // 系统日志
+./data/tmp                 // 临时目录
+
+./install                  // 框架安装目录
+./lang                     // 语言包目录
+./lib                      // 常用函数、类库目录
+
+./public                   // 公共目录
+./public/css               // 公用css目录
+./public/fonts             // 公用字体目录
+./public/images            // 公用图片目录
+./public/js                // 公用js目录
+./public/theme             // 主题css/js/image目录
+./public/ueditor           // UEditor富文本编辑器
+./public/webuploader       // WebUploader上传组件
+
+./theme                    // 主题模板
+./theme/default            // 主题默认模板
+
+./upload                   // 上传目录
+
+./weize                    // 框架核心目录
+./weize/framework.php      // 框架核心文件
+./weize/function.php       // 框架核心函数库
+./weize/w_mysqli.class.php // 框架MySQL连接/分页类
+./weize/w_user.class.php   // 框架用户类
+
+index.php   框架默认入口
+admin.php   后台入口
+appapi.php  APP接口入口
+general.php 通用应用入口
+member.php  会员中心入口
+<span class="red">docs.html   WeizePHP开发文档</span></code></pre></figure>
+        
+        
+        <!-- Getting Started -->
+        <h1 id="getting-started">快速入门（动手写自己的 Hello world!）</h1>
+        <p>1、在 <code>./app/content</code> 目录下创建 <code>hello</code> 文件夹，并在 <code>hello</code> 文件夹下建立 <code>index.php</code> 文件</p>
+        <figure class="highlight"><pre><code class="language-php" data-lang="php">&lt;?php
+if(!defined('IN_WEIZEPHP')) { exit('Access Denied'); } // 禁止直接访问
+$str = 'Hello World!'; // 赋值
+$sql = "SELECT * FROM `{$wconfig['db']['tablepre']}user`";
+$user = $wdb->get_row($sql); // 获取一条用户信息
+include $wconfig['theme_path'] . '/content/hello/index.html.php'; // 包含模板文件</code></pre></figure>
+        <p>2、在 <code>./theme/default/content</code> 目录下创建 <code>hello</code> 文件夹， 并在 <code>hello</code> 下建立 <code>index.html.php</code> 模板文件</p>
+        <figure class="highlight"><pre><code class="language-php" data-lang="php">&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset="utf-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"&gt;
+        &lt;title&gt;Hello world!&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;?php echo $str; ?&gt; &lt;!-- 输出 --&gt;
+        &lt;?php print_r($user); ?&gt; &lt;!-- 打印输出用户信息 --&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre></figure>
+        <p>3、访问刚刚做好的 <code>hello</code> 模块。下面是个示例网址：</p>
+        <figure class="highlight"><pre><code class="language-php" data-lang="php">http://localhost/weizephp/index.php?<span class="red">m=hello</span>&amp;<span class="red">a=index</span></code></pre></figure>
+        <p>想要开发新的模块，开发模式都跟这个 <code>hello</code> 模块类似。如果想要了解复杂一点的开发，可以查看系统自带的 <code>article</code> 文章模块和 <code>singlepage</code> 单页模块。</p>
+        <p>4、如果想在 <code>后台</code> 添加 <code>hello</code> 管理菜单。需要打开 <code>./lang/zh_cn/w_menu.inc.php</code> 文件，然后添加如下代码，</p>
+        <figure class="highlight"><pre><code class="language-php" data-lang="php">$wmenu['admin/hello']      = array('name'=>'hello管理', 'display'=>1);
+$wmenu['admin/hello/edit'] = array('name'=>'hello编辑', 'display'=>1);</code></pre></figure>
+        <p>
+            之后，刷新一下后台，即可看到新添加的 <code>hello管理</code> 菜单。
+            <br />
+            同时，也在后台也添加 <code>./app/admin/hello/edit.php</code> 模块文件，最后写一下具体的控制逻辑。
+        </p>
+        
+        <!-- Single Entrance -->
+        <h1 id="single-entrance">单一入口说明</h1>
+        <figure class="highlight"><pre><code class="language-php" data-lang="php">index.php   框架默认入口
+admin.php   后台入口
+appapi.php  APP接口入口
+general.php 通用应用入口
+member.php  会员中心入口
+
+当访问 index.php?m=home&amp;a=index 时，
+程序读取的是首页模块，即 ./app/content/home/index.php 文件；
+
+当访问 index.php?m=article&amp;a=view&amp;aid=1 时，
+程序读取的是文章模块 ./app/content/article/view.php 文件，且ID为 1 的文章；
+
+m 表示模块（即英文module）
+a 表示模块下的一个动作文件（即英文action）</code></pre></figure>
+        
+        
+        <!-- Reference -->
+        <h1 id="reference">常量、变量、函数、类库、JS</h1>
+        <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="red">// === 常量 ===</span>
+W_PERMISSION // 是否启用权限控制（1开启，0关闭）
+W_APPNAME    // 当前应用名
+IN_WEIZEPHP  // 默认值是TRUE.主要用于避免其他程序被非法引用
+W_ROOT_PATH  // 根目录
+
+<span class="red">// === 变量 ===</span>
+$m                         // 当前模块
+$a                         // 当前动作
+
+$isajax                    // 是否是AJAX访问。1为是，0为否
+$wflag                     // 当前脚本访问标识。如：content/home/index
+
+$wconfig['theme_path']     // 主题模板目录
+$wconfig['theme_skin']     // 主题皮肤css/js/image目录
+
+$wconfig['db']['tablepre'] // 表前缀
+
+$wconfig['public_path']    // 公共目录(启用CDN时有用)
+$wconfig['upload_path']    // 上传(启用CDN时有用)
+
+$wmenu                     // 菜单数组
+$wlang                     // 语言包数组
+
+<span class="red">// === 函数 ===</span>
+w_stripslashes($string) // 去除反斜线
+w_addslashes($string)   // 添加反斜线
+
+// 截取部分字符串
+w_substr($str, $start = 0, $length = 30, $charset = "utf-8", $suffix = false)
+
+w_sizecount($size) // 数据大小统计
+w_get_client_ip()  // 获取客户端IP
+w_random($length)  // 生产随机字符串，如：w_random(6);
+w_sign($array)     // 签名函数
+
+// 语言替换函数
+w_lang($lang, $array = array())
+
+// 发送cookie到浏览器
+w_setcookie($name, $value, $expire = 0, $httponly = false)
+
+// 成功提示函数
+w_success($message, $url = '')
+// 错误提示函数
+w_error($message, $url = '')
+
+w_rewriteurl($url) // 伪静态函数
+w_get_siteurl()    // 获取站点网址函数。如：http://www.75hh.com/
+
+<span class="red">// === 类库 ===</span>
+
+// 数据库类实例化
+<span class="red">$wdb = new w_mysqli();</span>
+---------------------------------
+// 获取一条数据
+$sql = "SELECT * FROM `w_user`";
+$row = $wdb->get_row($sql);
+---------------------------------
+// 获取多条数据
+$sql = "SELECT * FROM `w_user`";
+$lists = $wdb->get_all($sql);
+---------------------------------
+// 分页
+$sql    = "SELECT * FROM `w_user`";
+$data   = $wdb->pagination($sql, 1); // 1条一页
+$output = $wdb->pagination_output();
+foreach($data as $val) {} // 遍历分页数据
+echo $output; // 输出分页HTML
+---------------------------------
+
+// 用户管理类实例化
+<span class="red">$wuser = new w_user();</span>
+---------------------------------
+$wuser->sid         // Session ID
+$wuser->session     // Session 值
+
+$wuser->aid         // Access Token ID
+$wuser->accesstoken // Access Token 值
+
+$wuser->ip          // 当前用户的IP地址
+$wuser->uid         // 当前用户的 uid
+$wuser->lastvisit   // 当前用户的上次访问时间
+$wuser->formtoken   // 当前用户表单令牌
+
+$wuser->username    // 当前用户名
+$wuser->roleid      // 当前用户角色ID
+$wuser->point       // 当前用户积分
+$wuser->balance     // 当前用户余额
+$wuser->realname    // 当前用户真名
+$wuser->nickname    // 当前用户昵称
+---------------------------------
+// 注册用户
+$result = $wuser->register($username, $username_again, $password, $password_again, $email, $email_again, $roleid = 0, $mobile = '');
+# <span class="red">$result</span> 状态码 #
+1   正确状态
+0   未知错误
+-1  用户名只允许使用字母、数字、下划线，且必须需以字母开头
+-2  用户名不能小于3个字符
+-3  用户名不能大于15个字符
+-4  该用户名已经被注册
+-5  两次输入的用户名不一致
+-6  两次输入的密码不一致
+-7  密码不能小于6个字符
+-8  密码不能大于15个字符
+-9  E-mail格式有误
+-10 该E-mail已经被注册
+-11 两次输入的邮箱不一致
+-12 手机格式不正确
+-13 手机已经被占用
+-14 登录账号不正确
+-15 IP登录错误次数过多,请N分钟后再试
+-16 账号登录错误次数过多,请N分钟后再试
+-17 用户不存在,或者已经被删除,您还可以尝试N次
+-18 登陆密码错误,您还可以尝试N次
+---------------------------------
+$wuser->login($username, $password, $mode = "session") // 登录.如果登陆错误，这里限制15分钟锁定
+$wuser->logout()                  // 登出
+$wuser->check_access_permission() // 检查访问权限
+$wuser->get_curapp_user_menu()    // 获取“当前应用”的“用户菜单”
+$wuser->actionlog($loginfo)       // 记录用户操作日志
+---------------------------------
+
+<span class="red">// === JS ===</span>
+w_dialog_success(message, url)      // 成功对话弹出框
+w_dialog_error(message)             // 错误对话弹出框
+w_dialog_confirm(message, ok)       // 确认对话弹出框
+w_dialog_custom(title, message, ok) // 自定义对话弹出框</code></pre></figure>
+        
+        
+        <!-- Rewrite -->
+        <h1 id="rewrite">添加伪静态示例</h1>
+        <figure class="highlight"><pre><code class="language-php" data-lang="php">// 1、打开 <span class="red">./config/w_config.inc.php</span> 文件，设置 <span class="red">$wconfig['rewrite']['on'] = true;</span> 开启伪静态
+
+// 2、添加内容伪静态
+$wconfig['rewrite']['content'] = array();
+$wconfig['rewrite']['content'] = array(
+    <span class="red">'/^index.php\?m=singlepage&amp;a=view&amp;spid=(\d+)$/' => 'singlepage-view-$1.html',</span> // 单页伪静态示例
+);
+
+// 3、打开 <span class="red">.htaccess</span> 文件，开启伪静态，并添加“单页”伪静态（<span class="red">这里是Apache伪静态示例</span>）
+RewriteEngine on
+<span class="red">RewriteRule ^singlepage-view-(\d+).html$ index.php?m=singlepage&amp;a=view&amp;spid=$1</span></code></pre></figure>
+        <p class="red">“单页伪静态” Nginx 示例</p>
+        <figure class="highlight"><pre><code class="language-php" data-lang="php">server {
+    listen       80;
+    root         /data/www/***;
+    server_name  www.***.com ***.com;
+    
+    location / {
+        index  index.html index.htm index.php;
+        <span class="red">rewrite ^([^\.]*)/singlepage-view-(\d+)\.html$ $1/index.php?m=singlepage&amp;a=view&amp;spid=$2 last;</span>
+        if (!-e $request_filename) {
+            return 404;
+        }
+    }
+    
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+    
+    location ~ \.php$ {
+        fastcgi_pass   127.0.0.1:9000;
+        fastcgi_index  index.php;
+        fastcgi_param  SCRIPT_FILENAME  /data/www/***$fastcgi_script_name;
+        include        fastcgi_params;
+    }
+}</code></pre></figure>
+        
+        <!-- Code Rule -->
+        <h1 id="code-rule">编码规范</h1>
+        <p>本规范由编程原则组成，融合并提炼了开发人员长时间积累下来的成熟经验，意在帮助形成良好一致的编程风格。</p>
+        <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="red">// === 文件命名 ===</span>
+
+index.php          // 普通文件
+menu.inc.php       // 包含文件
+extend.func.php    // 函数文件
+mysqli.class.php   // 类库文件
+framework.lang.php // 语言包文件
+
+<span class="red">// === 常量命名 ===</span>
+
+全部使用大写字母命名，少数特别必要的情况下，可使用下划线“_”来分隔单词；
+
+define('W_APPNAME', 'front');             // 前台应用
+define('W_ROOT_PATH', dirname(__FILE__)); // 根目录
+
+<span class="red">// === 变量、类、函数、表、字段命名 ===</span>
+
+一律为小写格式，除非必要，单词之间一般不使用下划线“_”进行分割；
+
+以标准计算机英文为蓝本，杜绝一切拼音、或拼音英文混杂的命名方式；
+
+变量命名只能使用项目中有据可查的英文缩写方式，
+例如可以使用$data而不可使用$data1、$data2这样容易产生混淆的形式，
+应当使用$articledata、$postdata这样一目了然容易理解的形式；
+
+可以合理的对过长的命名进行缩写，例如$bio($biography)，$ccb($ChinaConstructionBank)，
+前提是英文中有这样既有的缩写形式，或字母符合英文缩写规范；
+
+必须清楚所使用英文单词的词性，在权限相关的范围内，
+大多使用$allow***或$is***的形式，前者后面接动词，后者后面接形容词。
+
+<span class="red">// === SQL语句书写 ===</span>
+
+所有SQL语句中，除了表名、字段名称以外，全部语句和函数均需大写；
+数据库SQL语句中，所有数据必须加单引号，无论数值还是字串，以避免可能的注入漏洞和SQL错误。
+
+$sql = "SELECT `username` FROM `{$wconfig['db']['tablepre']}user` WHERE `uid`='{$uid}'";
+
+<span class="red">// === CSS 写作注意事项 ===</span>
+
+1. 属性写在一行内，属性之间、属性名和值之间以及属性与“{}”之间须有空格，例如：.class { width: 400px; height: 300px; }
+2. 属性的书写顺序：
+    2.1. 按照元素模型由外及内，由整体到细节书写，大致分为五组：
+        位置：position,left,right,float
+        盒模型属性：display,margin,padding,width,height
+        边框与背景：border,background
+        段落与文本：line-height,text-indent,font,color,text-decoration,...
+        其他属性：overflow,cursor,visibility,...
+    2.2. 针对特殊浏览器的属性，应写在标准属性之前，例如：-webkit-box-shadow:; -moz-box-shadow:; box-shaow:;
+3. 谨慎添加新的选择符规则，尤其不可滥用 id，尽可能继承和复用已有样式
+4. 选择符、属性、值均用小写（格式的颜色值除外），缩写的选择符名称须说明缩写前的全称，例如 .cl -> Clearfix
+5. 尽量避免使用各种 CSS Hack，如确实有必要，可以使用
+6. 勿使用冗余低效的 CSS 写法，例如：
+    ul li a span { ... }
+7. 慎用 !important
+8. 建议使用在 class / id 名称中的词语
+    8.1. 表示状态：a->active
+    8.2. 表示结构：h->header,c->content,f->footer
+    8.3. 表示区域：mn->main,sd->side,nv-navigation,mu->menu
+    8.4. 表示样式：l-list,tab,p_pop
+9. 开发过程中的未定事项，须用 [!] 标出，以便于后续讨论整理</code></pre></figure>
+        
+        
+        <!-- Database -->
+        <h1 id="database">数据表字典</h1>
+        <p class="red">w_config(站点配置表)</p>
+        <table class="tb_lib">
+            <tr>
+                <th>字段名</th>
+                <th>注释</th>
+                <th>备注</th>
+                <th>类型</th>
+            </tr>
+            <tr>
+                <td>ckey</td>
+                <td>键名</td>
+                <td></td>
+                <td>varchar(255)</td>
+            </tr>
+            <tr>
+                <td>cvalue</td>
+                <td>键值</td>
+                <td>&nbsp;</td>
+                <td>text</td>
+            </tr>
+        </table>
+        <p class="red">w_user(用户表)</p>
+        <table class="tb_lib">
+            <tr>
+                <th>字段名</th>
+                <th>注释</th>
+                <th>备注</th>
+                <th>类型</th>
+            </tr>
+            <tr>
+                <td>uid</td>
+                <td>用户ID</td>
+                <td></td>
+                <td>mediumint(8)</td>
+            </tr>
+            <tr>
+                <td>email</td>
+                <td>用户邮箱</td>
+                <td>&nbsp;</td>
+                <td>char(40)</td>
+            </tr>
+            <tr>
+                <td>username</td>
+                <td>用户名</td>
+                <td>&nbsp;</td>
+                <td>char(15)</td>
+            </tr>
+            <tr>
+                <td>mobile</td>
+                <td>手机号</td>
+                <td>&nbsp;</td>
+                <td>char(11)</td>
+            </tr>
+            <tr>
+                <td>password</td>
+                <td>密码</td>
+                <td></td>
+                <td>char(32)</td>
+            </tr>
+            <tr>
+                <td>status</td>
+                <td>状态</td>
+                <td>0关闭,1启用</td>
+                <td>tinyint(1)</td>
+            </tr>
+            <tr>
+                <td>roleid</td>
+                <td>角色ID</td>
+                <td>&nbsp;</td>
+                <td>smallint(5)</td>
+            </tr>
+            <tr>
+                <td>regtime</td>
+                <td>注册时间</td>
+                <td>&nbsp;</td>
+                <td>int(11)</td>
+            </tr>
+            <tr>
+                <td>regip</td>
+                <td>注册IP</td>
+                <td></td>
+                <td>char(15)</td>
+            </tr>
+            <tr>
+                <td>lastlogintime</td>
+                <td>上次登录时间</td>
+                <td>&nbsp;</td>
+                <td>int(11)</td>
+            </tr>
+            <tr>
+                <td>lastloginip</td>
+                <td>上次登录ip</td>
+                <td>&nbsp;</td>
+                <td>char(15)</td>
+            </tr>
+            <tr>
+                <td>logincount</td>
+                <td>登陆次数</td>
+                <td></td>
+                <td>mediumint(8)</td>
+            </tr>
+            <tr>
+                <td>point</td>
+                <td>积分</td>
+                <td>&nbsp;</td>
+                <td>int(10)</td>
+            </tr>
+            <tr>
+                <td>balance</td>
+                <td>余额</td>
+                <td>&nbsp;</td>
+                <td>decimal(10,2)</td>
+            </tr>
+            <tr>
+                <td>salt</td>
+                <td>盐值</td>
+                <td></td>
+                <td>char(6)</td>
+            </tr>
+            <tr>
+                <td>realname</td>
+                <td>真名</td>
+                <td></td>
+                <td>varchar(32)</td>
+            </tr>
+            <tr>
+                <td>nickname</td>
+                <td>昵称</td>
+                <td></td>
+                <td>varchar(32)</td>
+            </tr>
+        </table>
+        <p class="red">w_role(角色表)</p>
+        <table class="tb_lib">
+            <tr>
+                <th>字段名</th>
+                <th>注释</th>
+                <th>备注</th>
+                <th>类型</th>
+            </tr>
+            <tr>
+                <td>roleid</td>
+                <td>角色ID</td>
+                <td></td>
+                <td>smallint(5)</td>
+            </tr>
+            <tr>
+                <td>status</td>
+                <td>状态</td>
+                <td>0关闭,1启用</td>
+                <td>tinyint(1)</td>
+            </tr>
+            <tr>
+                <td>rolename</td>
+                <td>角色名</td>
+                <td>&nbsp;</td>
+                <td>varchar(32)</td>
+            </tr>
+            <tr>
+                <td>permission</td>
+                <td>权限</td>
+                <td>&nbsp;</td>
+                <td>text</td>
+            </tr>
+        </table>
+        <p class="red">w_loginfailed(登陆失败锁定表)</p>
+        <table class="tb_lib">
+            <tr>
+                <th>字段名</th>
+                <th>注释</th>
+                <th>备注</th>
+                <th>类型</th>
+            </tr>
+            <tr>
+                <td>ipusername</td>
+                <td>IP地址或者用户名</td>
+                <td></td>
+                <td>char(15)</td>
+            </tr>
+            <tr>
+                <td>logintime</td>
+                <td>登陆时间</td>
+                <td>&nbsp;</td>
+                <td>int(10)</td>
+            </tr>
+            <tr>
+                <td>count</td>
+                <td>错误次数</td>
+                <td>&nbsp;</td>
+                <td>tinyint(1)</td>
+            </tr>
+        </table>
+        <p class="red">框架所有表简单描述</p>
+        <figure class="highlight"><pre><code class="language-php" data-lang="php">w_accesstoken           // Access Token 表
+w_actionlog             // 用户操作日志表
+w_adminlog              // 管理员操作日志表
+w_article               // 文章表
+w_article_attachment    // 文章附件表
+w_article_category      // 文章分类表
+w_article_content       // 文章内容表
+w_captcha               // 验证码表
+w_config                // 配置表
+w_loginfailed           // 登陆失败锁定表
+w_nav                   // 导航菜单表
+w_role                  // 角色表
+w_session               // Session 表
+w_singlepage            // 单页表
+w_singlepage_attachment // 单页附件表
+w_singlepage_content    // 单页内容表
+w_upload                // 上传表
+w_user                  // 用户表</code></pre></figure>
+        
+        <br />
+        
+        
+        <!-- License -->
+        <h1 id="license">许可协议</h1>
+        <p>MIT License</p>
+        
+        <footer>
+            <p class="ft-p">Copyright &copy; 2013 - 2113 WeizePHP.</p>
+        </footer>
+        <script type="text/javascript" src="./public/js/jquery-1.1.2.pack.js"></script>
+        <script type="text/javascript">
+        $(document).ready(function(e) {
+            // 返回按钮
+            $('#docs-back-btn').click(function() {
+                if( window.location.hash == '' ) {
+                    return true;
+                } else {
+                    window.history.back();
+                    return false;
+                }
+            });
+            // 表格背景切换
+            $('.tb_lib tr').hover(
+                function(e) {
+                    $(this).addClass("hover");
+                },
+                function(e) {
+                    $(this).removeClass("hover");
+                }
+            );
+        });
+        </script>
+	</body>
+</html>

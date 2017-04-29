@@ -1,0 +1,147 @@
+@charset "utf-8";
+/* Header 头部
+----------------------------------*/
+.w-header {
+    background-color: #006600;
+    border-bottom: 1px solid #004400;
+}
+.w-header .navbar-header a {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 22px;
+}
+
+/* 移动端用户导航条
+----------------------------------*/
+#w-user-guide {
+    display: block;
+    border-bottom: 1px solid #cbe6bd;
+    background-color: #eff4e9;
+    padding-top: 6px;
+    padding-bottom: 8px;
+    text-align: right;
+}
+
+/* Sidebar 侧栏
+----------------------------------*/
+.w-sidebar {
+    display: none;
+    padding: 5px 20px;
+    background-color: #EFF4E9;
+    border-right: 1px solid #eee;
+}
+.w-sidebar-item h4 {
+	color: #009900;
+    font-size: 16px;
+}
+.w-sidebar-item .nav-sidebar {
+    margin-right: -21px;
+    margin-bottom: 20px;
+    margin-left: -20px;
+}
+.w-sidebar-item .nav-sidebar > li > a {
+	padding: 5px 10px 5px 28px;
+	color: #006600;
+	color: #808040;
+}
+.w-sidebar-item .nav-sidebar > .active > a,
+.w-sidebar-item .nav-sidebar > .active > a:hover,
+.w-sidebar-item .nav-sidebar > .active > a:focus {
+    color: #FF6600;
+}
+.w-sidebar-item ul li a i {
+    font-style: normal;
+}
+
+/* Main 主要页面
+----------------------------------*/
+.w-main {
+    padding: 20px;
+}
+
+/* WeizePHP admin 公共部分
+----------------------------------*/
+.w-mt-0 { margin-top: 0px; }
+.w-row, .w-mb-10 { margin-bottom: 10px; }
+
+.w-h4, .w-table .w-thead tr th {
+	border-bottom: 1px solid #CBE6BD;
+	background-color: #EFF4E9;
+	color: #090;
+}
+.w-table tbody tr td { border-top: 1px dotted #CBE6BD; }
+.w-h4 {
+	margin-top: 0;
+	padding: 8px;
+	line-height: 20px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.w-form label {}
+
+.w-table .w-thead-1 tr th { border-bottom: 1px solid #CBE6BD; }
+
+a.w-a-btn { color: #fff; }
+
+.w-checkbox-inline {
+	font-weight: bold;
+}
+
+.w-role-form-inline {
+	border-bottom: 1px dotted #CBE6BD;
+	padding-bottom: 10px;
+}
+
+.w-red {
+    color: red;
+}
+
+/* 角色权限分配
+----------------------------------*/
+.rolepermissionassign-title .checkbox-inline {
+	line-height:24px;
+	font-weight: bold;
+}
+.rolepermissionassign-ul, .rolepermissionassign-ul li {
+	margin: 0px;
+	padding: 0px;
+}
+.rolepermissionassign-ul li {
+	list-style: none;
+	float: left;
+	border-right: 1px dotted #CBE6BD;
+	width: 200px;
+	margin-right: 10px;
+	line-height: 24px;
+}
+
+/* 多种媒介界面设计
+----------------------------------*/
+@media (min-width: 768px) {
+    .w-header {
+        position: fixed;
+        top: 0px;
+        width: 100%;
+        z-index: 1;
+    }
+    .w-header .navbar-collapse {
+        display: block;
+    }
+    #w-user-guide {
+        display: none;
+    }
+    .w-sidebar {
+        display: block;
+        position: fixed;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        top: 51px;
+        bottom: 0;
+        left: 0;
+        z-index: 2;
+    }
+    .w-main {
+        padding-top: 68px;
+    }
+}

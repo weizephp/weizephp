@@ -1,0 +1,15 @@
+#
+# robots.txt for WeizePHP 4.0
+#
+
+User-agent: * 
+Disallow: /app/
+Disallow: /data/
+Disallow: /includes/
+Disallow: /install/
+Disallow: /lang/
+Disallow: /lib/
+Disallow: /public/
+Disallow: /theme/
+Disallow: /upload/
+Disallow: /weize/

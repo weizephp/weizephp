@@ -1,0 +1,5 @@
+# 将 RewriteEngine 模式打开
+#RewriteEngine on
+
+# 单页静态化示例
+#RewriteRule ^singlepage-view-(\d+).html$ index.php?m=singlepage&a=view&spid=$1

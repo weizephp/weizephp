@@ -56,14 +56,20 @@ if(!defined('IN_WEIZEPHP')) {
                 }
                 curVal = '';
                 var curImgVal = wCaptchaImgDom.html();
-                $.getJSON("general.php?m=captcha&a=createkey", function(data) {
-                    wCaptchaKeyDom.val( data.captchakey );
-                    if(curImgVal == '') {
-                        wCaptchaImgDom.html( '<img class="img-thumbnail" src="general.php?m=captcha&a=display&captchakey='+ data.captchakey +'"/>' );
-                    } else {
-                        wCaptchaImgDom.children("img").attr( "src", "general.php?m=captcha&a=display&captchakey=" + data.captchakey );
+                $.ajax({
+                    cache: false,
+                    dataType: "json",
+                    type: "POST",
+                    url: "general.php?m=captcha&a=createkey",
+                    success: function(data) {
+                        wCaptchaKeyDom.val( data.captchakey );
+                        if(curImgVal == '') {
+                            wCaptchaImgDom.html( '<img class="img-thumbnail" src="general.php?m=captcha&a=display&captchakey='+ data.captchakey +'"/>' );
+                        } else {
+                            wCaptchaImgDom.children("img").attr( "src", "general.php?m=captcha&a=display&captchakey=" + data.captchakey );
+                        }
+                        curImgVal = '';
                     }
-                    curImgVal = '';
                 });
             }
             $(".w-captcha-update, .w-captcha-img").on("click", function() {

@@ -148,8 +148,7 @@ if( !defined('IN_WEIZEPHP') ) {
                 pick: '#filePicker',
                 accept: {
                     title: 'Images',
-                    extensions: 'gif,jpg,jpeg,bmp,png',
-                    mimeTypes: 'image/*'
+                    extensions: 'gif,jpg,jpeg,bmp,png'
                 }
             });
             

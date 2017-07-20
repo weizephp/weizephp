@@ -56,9 +56,9 @@
                         <input type="button" value="上一步" onClick="javascript:history.back();"/>
                         <?php
                         if(empty($result)) {
-                        	echo ' - <input type="submit" value="下一步"/>';
+                            echo ' - <input type="submit" value="下一步"/>';
                         } else {
-                        	echo ' - <input type="submit" disabled="disabled" value="下一步"/>';
+                            echo ' - <input type="submit" disabled="disabled" value="下一步"/>';
                         }
                         ?>
                     </form>

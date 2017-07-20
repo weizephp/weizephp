@@ -51,68 +51,68 @@ $wuser = new w_user();
 
 
 class w_user {
-	
-	public $sid         = '';
-	public $session     = '';
-	
-	public $aid         = '';
-	public $accesstoken = '';
-	
-	public $ip          = '';
-	public $uid         = 0;
-	public $lastvisit   = 0;
-	public $formtoken   = '';
-	
-	public $username    = '';
-	public $roleid      = 0;
-	public $point       = 0;
-	public $balance     = '0.00';
-	public $realname    = '';
+    
+    public $sid         = '';
+    public $session     = '';
+    
+    public $aid         = '';
+    public $accesstoken = '';
+    
+    public $ip          = '';
+    public $uid         = 0;
+    public $lastvisit   = 0;
+    public $formtoken   = '';
+    
+    public $username    = '';
+    public $roleid      = 0;
+    public $point       = 0;
+    public $balance     = '0.00';
+    public $realname    = '';
     public $nickname    = '';
     
     public $lastvisit_old = 0;
-	
-	/* ------------------------------------------------- */
-	
-	/**
+    
+    /* ------------------------------------------------- */
+    
+    /**
      * session 初始化
-	 * @return int
+     * @return int
      */
-	protected function init_session() {
-		global $wconfig, $m, $wdb;
+    protected function init_session() {
+        global $wconfig, $m, $wdb;
         
-		// 定义签名变量
+        // 定义签名变量
         $salt = '';
-		$sign = '';
-		
-		// 定义cookie的key
-		$sessionkey = $wconfig['cookie']['prefix'] . 'session';
-		$saltkey    = $wconfig['cookie']['prefix'] . 'salt';
-		
-		// 读取客户端cookie
-		$client_session = isset($_COOKIE[$sessionkey]) ? trim($_COOKIE[$sessionkey]) : '';
-		$client_salt    = isset($_COOKIE[$saltkey])    ? trim($_COOKIE[$saltkey])    : '';
-		
-		// 如果$session字符长度为50时，获取$client_sid,$client_time,$client_sign值，否则定义空值
-		if( strlen($client_session) == 50 ) {
-			$client_sid  = substr($client_session, 0, 8);
-			$client_time = intval(substr($client_session, 8, 10));
-			$client_sign = substr($client_session, 18);
-		} else {
-			$client_sid  = w_random(8);
-			$client_time = time();
-			$client_sign = '';
+        $sign = '';
+        
+        // 定义cookie的key
+        $sessionkey = $wconfig['cookie']['prefix'] . 'session';
+        $saltkey    = $wconfig['cookie']['prefix'] . 'salt';
+        
+        // 读取客户端cookie
+        $client_session = isset($_COOKIE[$sessionkey]) ? trim($_COOKIE[$sessionkey]) : '';
+        $client_salt    = isset($_COOKIE[$saltkey])    ? trim($_COOKIE[$saltkey])    : '';
+        
+        // 如果$session字符长度为50时，获取$client_sid,$client_time,$client_sign值，否则定义空值
+        if( strlen($client_session) == 50 ) {
+            $client_sid  = substr($client_session, 0, 8);
+            $client_time = intval(substr($client_session, 8, 10));
+            $client_sign = substr($client_session, 18);
+        } else {
+            $client_sid  = w_random(8);
+            $client_time = time();
+            $client_sign = '';
             $client_salt = w_random(6);
-		}
-		
-		// 给对象变量赋值
-		$this->ip = $_SERVER['REMOTE_ADDR'];
+        }
+        
+        // 给对象变量赋值
+        $this->ip = $_SERVER['REMOTE_ADDR'];
         
         // 校验签名 cookie
         $verify_sign = w_sign( array($client_sid, $client_time, $client_salt, 'session', $wconfig['authkey']) );
         if( $verify_sign === $client_sign ) {
             $sql = "SELECT * FROM `{$wconfig['db']['tablepre']}session` WHERE `sid`='{$client_sid}'";
-		    $row = $wdb->get_row($sql);
+            $row = $wdb->get_row($sql);
             if( !empty($row['lastvisit']) ) {
                 $this->lastvisit = $row['lastvisit'];
             }
@@ -148,101 +148,101 @@ class w_user {
             // 给客户端发送 cookie
             $this->sid       = w_random(8);
             $salt            = w_random(6);
-			$sign            = w_sign( array($this->sid, W_TIMESTAMP, $salt, 'session', $wconfig['authkey']) );
-			$this->session   = $this->sid . W_TIMESTAMP . $sign;
+            $sign            = w_sign( array($this->sid, W_TIMESTAMP, $salt, 'session', $wconfig['authkey']) );
+            $this->session   = $this->sid . W_TIMESTAMP . $sign;
             $this->lastvisit = W_TIMESTAMP; // 上次访问时间没有，就取当前时间
-			w_setcookie($sessionkey, $this->session, $wconfig['session']['cookie_lifetime'], true);
+            w_setcookie($sessionkey, $this->session, $wconfig['session']['cookie_lifetime'], true);
             w_setcookie($saltkey, $salt, $wconfig['session']['cookie_lifetime'], true);
             return 0;
         }
-	}
-	
-	/**
+    }
+    
+    /**
      * accesstoken 初始化
-	 * @return int
+     * @return int
      */
-	protected function init_accesstoken() {
-		global $wconfig, $wdb;
-		
-		if( isset($_GET['accesstoken']) ) {
-			$accesstoken = trim($_GET['accesstoken']);
-		} else if( isset($_POST['accesstoken']) ) {
-			$accesstoken = trim($_POST['accesstoken']);
-		} else {
-			$accesstoken = '';
-		}
-		
-		if( strlen($accesstoken) != 56 ) {
-			unset($accesstoken);
-			return 0;
-		}
-		
-		$client_aid  = substr($accesstoken, 0, 8);
-		$client_time = intval(substr($accesstoken, 8, 10));
+    protected function init_accesstoken() {
+        global $wconfig, $wdb;
+        
+        if( isset($_GET['accesstoken']) ) {
+            $accesstoken = trim($_GET['accesstoken']);
+        } else if( isset($_POST['accesstoken']) ) {
+            $accesstoken = trim($_POST['accesstoken']);
+        } else {
+            $accesstoken = '';
+        }
+        
+        if( strlen($accesstoken) != 56 ) {
+            unset($accesstoken);
+            return 0;
+        }
+        
+        $client_aid  = substr($accesstoken, 0, 8);
+        $client_time = intval(substr($accesstoken, 8, 10));
         $client_salt = substr($accesstoken, 18, 6);
-		$client_sign = substr($accesstoken, 24);
-		
-		if( (W_TIMESTAMP - $client_time) > $wconfig['accesstoken']['expire'] ) {
-			$client_time = W_TIMESTAMP;
-		}
-		
-		$this->ip = $_SERVER['REMOTE_ADDR'];
-		
-		$verify_sign = w_sign( array($client_aid, $client_time, $client_salt, 'accesstoken', $wconfig['authkey']) );
-		if( $verify_sign !== $client_sign ) {
-			unset($accesstoken, $client_aid, $client_time, $client_salt, $client_sign, $verify_sign);
-			return 0;
-		}
-		
-		$sql = "SELECT * FROM `{$wconfig['db']['tablepre']}accesstoken` WHERE `aid`='{$client_aid}'";
-	    $row = $wdb->get_row($sql);
+        $client_sign = substr($accesstoken, 24);
+        
+        if( (W_TIMESTAMP - $client_time) > $wconfig['accesstoken']['expire'] ) {
+            $client_time = W_TIMESTAMP;
+        }
+        
+        $this->ip = $_SERVER['REMOTE_ADDR'];
+        
+        $verify_sign = w_sign( array($client_aid, $client_time, $client_salt, 'accesstoken', $wconfig['authkey']) );
+        if( $verify_sign !== $client_sign ) {
+            unset($accesstoken, $client_aid, $client_time, $client_salt, $client_sign, $verify_sign);
+            return 0;
+        }
+        
+        $sql = "SELECT * FROM `{$wconfig['db']['tablepre']}accesstoken` WHERE `aid`='{$client_aid}'";
+        $row = $wdb->get_row($sql);
         
         if( !empty($row['lastvisit']) ) {
             $this->lastvisit = $row['lastvisit'];
         }
-		
-		if( !empty($row) && ($row['expire'] > W_TIMESTAMP) ) {
-			$this->aid         = $row['aid'];
-			$this->accesstoken = $accesstoken;
-			$this->uid         = $row['uid'];
-			$sql = "UPDATE `{$wconfig['db']['tablepre']}accesstoken` SET `lastvisit`='". W_TIMESTAMP ."' WHERE `aid`='{$this->aid}'";
-			$wdb->query($sql);
-		} else {
-			$sql = "DELETE FROM `{$wconfig['db']['tablepre']}accesstoken` WHERE `expire`<'" . W_TIMESTAMP . "'";
-			$wdb->query($sql);
-		}
-		
-		unset($accesstoken, $client_aid, $client_time, $client_salt, $client_sign, $verify_sign, $sql, $row);
-		
-		return 1;
-	}
+        
+        if( !empty($row) && ($row['expire'] > W_TIMESTAMP) ) {
+            $this->aid         = $row['aid'];
+            $this->accesstoken = $accesstoken;
+            $this->uid         = $row['uid'];
+            $sql = "UPDATE `{$wconfig['db']['tablepre']}accesstoken` SET `lastvisit`='". W_TIMESTAMP ."' WHERE `aid`='{$this->aid}'";
+            $wdb->query($sql);
+        } else {
+            $sql = "DELETE FROM `{$wconfig['db']['tablepre']}accesstoken` WHERE `expire`<'" . W_TIMESTAMP . "'";
+            $wdb->query($sql);
+        }
+        
+        unset($accesstoken, $client_aid, $client_time, $client_salt, $client_sign, $verify_sign, $sql, $row);
+        
+        return 1;
+    }
     
     /**
      * accesstoken 创建
-	 * @return string
+     * @return string
      */
-	public function create_accesstoken() {
-		global $wconfig, $wdb;
-		$this->aid         = w_random(8);
+    public function create_accesstoken() {
+        global $wconfig, $wdb;
+        $this->aid         = w_random(8);
         $salt              = w_random(6);
-		$sign              = w_sign( array($this->aid, W_TIMESTAMP, $salt, 'accesstoken', $wconfig['authkey']) );
-		$expire            = W_TIMESTAMP + $wconfig['accesstoken']['expire'];
-		$this->ip          = $_SERVER['REMOTE_ADDR'];
-		$this->lastvisit   = W_TIMESTAMP; // 上次访问时间没有，就取当前时间
-		$this->accesstoken = $this->aid . W_TIMESTAMP . $salt . $sign;
-		$sql = "REPLACE INTO `{$wconfig['db']['tablepre']}accesstoken`(`aid`, `expire`, `ip`, `uid`, `lastvisit`) VALUES ('{$this->aid}', '{$expire}', '{$this->ip}', '{$this->uid}', '". W_TIMESTAMP ."')";
-		$wdb->query($sql);
-		unset($expire, $sql);
-		return $this->accesstoken;
-	}
-	
-	/**
+        $sign              = w_sign( array($this->aid, W_TIMESTAMP, $salt, 'accesstoken', $wconfig['authkey']) );
+        $expire            = W_TIMESTAMP + $wconfig['accesstoken']['expire'];
+        $this->ip          = $_SERVER['REMOTE_ADDR'];
+        $this->lastvisit   = W_TIMESTAMP; // 上次访问时间没有，就取当前时间
+        $this->accesstoken = $this->aid . W_TIMESTAMP . $salt . $sign;
+        $sql = "REPLACE INTO `{$wconfig['db']['tablepre']}accesstoken`(`aid`, `expire`, `ip`, `uid`, `lastvisit`) VALUES ('{$this->aid}', '{$expire}', '{$this->ip}', '{$this->uid}', '". W_TIMESTAMP ."')";
+        $wdb->query($sql);
+        unset($expire, $sql);
+        return $this->accesstoken;
+    }
+    
+    /**
      * user 类初始化
-	 * 备注：如果想做访问统计，需要自己加访问统计表来做
+     * 备注：如果想做访问统计，需要自己加访问统计表来做
      */
-	public function init() {
-		global $wconfig, $m, $wdb;
-		// 除了验证码之外，其他的要检查 accesstoken 还是 session 模式访问
+    public function init() {
+        global $wconfig, $m, $wdb;
+        // 除了验证码之外，其他的要检查 accesstoken 还是 session 模式访问
         if( W_APPNAME == 'general' && $m == 'captcha' ) {
             // 啥也不操作...
         } else {
@@ -252,25 +252,25 @@ class w_user {
                 $this->init_session();
             }
         }
-		// 获取用户信息
-		if( $this->uid > 0 ) {
-			$sql = "SELECT `uid`, `username`, `roleid`, `point`, `balance`, `realname` FROM `{$wconfig['db']['tablepre']}user` WHERE `uid`='{$this->uid}'";
-			$user = $wdb->get_row($sql);
-			if( !empty($user) ) {
-				$this->uid      = $user['uid'];
-				$this->username = $user['username'];
-				$this->roleid   = $user['roleid'];
-				$this->point    = $user['point'];
-				$this->balance  = $user['balance'];
-				$this->realname = $user['realname'];
-			}
-			unset($sql, $user);
-		}
-	}
-	
-	/* ------------------------------------------------- */
-	
-	/**
+        // 获取用户信息
+        if( $this->uid > 0 ) {
+            $sql = "SELECT `uid`, `username`, `roleid`, `point`, `balance`, `realname` FROM `{$wconfig['db']['tablepre']}user` WHERE `uid`='{$this->uid}'";
+            $user = $wdb->get_row($sql);
+            if( !empty($user) ) {
+                $this->uid      = $user['uid'];
+                $this->username = $user['username'];
+                $this->roleid   = $user['roleid'];
+                $this->point    = $user['point'];
+                $this->balance  = $user['balance'];
+                $this->realname = $user['realname'];
+            }
+            unset($sql, $user);
+        }
+    }
+    
+    /* ------------------------------------------------- */
+    
+    /**
      * 检查用户名
      * @param string $username
      * @return int
@@ -373,8 +373,8 @@ class w_user {
     public function create_password($password, $salt) {
         return md5(md5($password).$salt);
     }
-	
-	/**
+    
+    /**
      * 注册
      * @param string $username
      * @param string $username_again
@@ -433,8 +433,8 @@ class w_user {
             return 0;
         }
     }
-	
-	/**
+    
+    /**
      * 登录.如果登陆错误，这里限制15分钟锁定
      * @param string $username
      * @param string $password
@@ -442,159 +442,159 @@ class w_user {
      * @return array 
      */
     public function login($username, $password, $mode = "session") {
-		global $wconfig, $wdb;
-		// 定义返回数据结构
-		$data = array(
-		    'status'      => -14,
-			'timeleft'    => 0,
-			'remaincount' => 0,
+        global $wconfig, $wdb;
+        // 定义返回数据结构
+        $data = array(
+            'status'      => -14,
+            'timeleft'    => 0,
+            'remaincount' => 0,
             'accesstoken' => ''
-		);
-		// 判断用户账号类型
-		$username_type = 'username'; // uid,username,email,mobile
-		if( is_numeric($username) && (strlen($username) == 11) ) {
-			$username_type = 'mobile';
-		} else if( is_numeric($username) ) {
-			$username_type = 'uid';
-		} else if( preg_match('/^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/', $username) == 1 ) {
-			$username_type = 'email';
-		} else {
-			$username_type = 'username';
-		}
-		// 检查用户名输入安全
-		if( ($username_type == 'username') && !preg_match('/^[a-zA-Z]+[a-zA-Z0-9_]+$/', $username) ) {
-			$data = array(
-				'status'      => -14,
-				'timeleft'    => 0,
-				'remaincount' => $wconfig['login_lock_number'],
+        );
+        // 判断用户账号类型
+        $username_type = 'username'; // uid,username,email,mobile
+        if( is_numeric($username) && (strlen($username) == 11) ) {
+            $username_type = 'mobile';
+        } else if( is_numeric($username) ) {
+            $username_type = 'uid';
+        } else if( preg_match('/^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/', $username) == 1 ) {
+            $username_type = 'email';
+        } else {
+            $username_type = 'username';
+        }
+        // 检查用户名输入安全
+        if( ($username_type == 'username') && !preg_match('/^[a-zA-Z]+[a-zA-Z0-9_]+$/', $username) ) {
+            $data = array(
+                'status'      => -14,
+                'timeleft'    => 0,
+                'remaincount' => $wconfig['login_lock_number'],
                 'accesstoken' => ''
-			);
-			return $data;
-		}
-		// 获取用户IP
-		$ip = $_SERVER['REMOTE_ADDR'];
+            );
+            return $data;
+        }
+        // 获取用户IP
+        $ip = $_SERVER['REMOTE_ADDR'];
         //$ip = w_get_client_ip();
-		// 定义“IP锁”、“用户名锁”数组变量
-		$ip_lock_arr = $username_lock_arr = array(
-		    'ipusername' => '',
-			'logintime' => 0,
-			'count' => 0
-		);
-		// 从数据表里查出“IP锁”、“用户名锁”数据
-		$sql = "SELECT * FROM `{$wconfig['db']['tablepre']}loginfailed` WHERE `ipusername`='{$ip}' OR `ipusername`='{$username}'";
-		$result = $wdb->query($sql);
-		if( $result !== FALSE ) {
-			while( $row = $result->fetch_assoc() ) {
-				if( $row['ipusername'] === $username ) {
-					$ip_lock_arr = $row;
-				} elseif( $row['ipusername'] === $ip ) {
-					$username_lock_arr = $row;
-				}
-			}
-		}
-		// 剩余时间
-		$ip_lock_interval       = W_TIMESTAMP - $ip_lock_arr['logintime'];
-		$username_lock_interval = W_TIMESTAMP - $username_lock_arr['logintime'];
-		// 检查IP是否被锁定
-		if( ($ip_lock_interval > $wconfig['login_lock_second']) && ($ip_lock_arr['count'] >= $wconfig['login_lock_number']) ) {
-			$data = array(
-				'status'      => -15,
-				'timeleft'    => $wconfig['login_lock_second'] - $ip_lock_interval,
-				'remaincount' => 0,
+        // 定义“IP锁”、“用户名锁”数组变量
+        $ip_lock_arr = $username_lock_arr = array(
+            'ipusername' => '',
+            'logintime' => 0,
+            'count' => 0
+        );
+        // 从数据表里查出“IP锁”、“用户名锁”数据
+        $sql = "SELECT * FROM `{$wconfig['db']['tablepre']}loginfailed` WHERE `ipusername`='{$ip}' OR `ipusername`='{$username}'";
+        $result = $wdb->query($sql);
+        if( $result !== FALSE ) {
+            while( $row = $result->fetch_assoc() ) {
+                if( $row['ipusername'] === $username ) {
+                    $ip_lock_arr = $row;
+                } elseif( $row['ipusername'] === $ip ) {
+                    $username_lock_arr = $row;
+                }
+            }
+        }
+        // 剩余时间
+        $ip_lock_interval       = W_TIMESTAMP - $ip_lock_arr['logintime'];
+        $username_lock_interval = W_TIMESTAMP - $username_lock_arr['logintime'];
+        // 检查IP是否被锁定
+        if( ($ip_lock_interval > $wconfig['login_lock_second']) && ($ip_lock_arr['count'] >= $wconfig['login_lock_number']) ) {
+            $data = array(
+                'status'      => -15,
+                'timeleft'    => $wconfig['login_lock_second'] - $ip_lock_interval,
+                'remaincount' => 0,
                 'accesstoken' => ''
-			);
-			return $data;
-		}
-		// 检查用户名是否被锁定
-		if( ($username_lock_interval > $wconfig['login_lock_second']) && ($username_lock_arr['count'] >= $wconfig['login_lock_number']) ) {
-			$data = array(
-				'status'      => -16,
-				'timeleft'    => $wconfig['login_lock_second'] - $username_lock_interval,
-				'remaincount' => 0,
+            );
+            return $data;
+        }
+        // 检查用户名是否被锁定
+        if( ($username_lock_interval > $wconfig['login_lock_second']) && ($username_lock_arr['count'] >= $wconfig['login_lock_number']) ) {
+            $data = array(
+                'status'      => -16,
+                'timeleft'    => $wconfig['login_lock_second'] - $username_lock_interval,
+                'remaincount' => 0,
                 'accesstoken' => ''
-			);
-			return $data;
-		}
-		// 根据用户名查出用户信息
-		$sql = "SELECT * FROM `{$wconfig['db']['tablepre']}user` WHERE `{$username_type}`='{$username}'";
+            );
+            return $data;
+        }
+        // 根据用户名查出用户信息
+        $sql = "SELECT * FROM `{$wconfig['db']['tablepre']}user` WHERE `{$username_type}`='{$username}'";
         $user_row = $wdb->get_row($sql);
-		// 如果登录账号不对，记录登陆错误IP次数
-		if( empty($user_row) ) {
-			$remaincount = 0;
-			if( $ip_lock_arr['ipusername'] === '' ) {
-				$remaincount = $wconfig['login_lock_number'] - 1;
-				$sql = "REPLACE INTO `{$wconfig['db']['tablepre']}loginfailed` (`ipusername`, `logintime`, `count`) VALUES ('{$ip}', '". W_TIMESTAMP ."', '1')";
-				$wdb->query($sql);
-			} else {
-				$remaincount = $wconfig['login_lock_number'] - ($ip_lock_arr['count'] + 1);
-				$sql = "UPDATE `{$wconfig['db']['tablepre']}loginfailed` SET `logintime`='". W_TIMESTAMP ."', `count`=`count`+1 WHERE `ipusername`='{$ip}'";
+        // 如果登录账号不对，记录登陆错误IP次数
+        if( empty($user_row) ) {
+            $remaincount = 0;
+            if( $ip_lock_arr['ipusername'] === '' ) {
+                $remaincount = $wconfig['login_lock_number'] - 1;
+                $sql = "REPLACE INTO `{$wconfig['db']['tablepre']}loginfailed` (`ipusername`, `logintime`, `count`) VALUES ('{$ip}', '". W_TIMESTAMP ."', '1')";
                 $wdb->query($sql);
-			}
-			if( $remaincount == 0 ) {
-				$data = array(
-					'status'      => -15,
-					'timeleft'    => $wconfig['login_lock_second'],
-					'remaincount' => 0,
-                    'accesstoken' => ''
-				);
-				return $data;
             } else {
-				$data = array(
-					'status'      => -17,
-					'timeleft'    => 0,
-					'remaincount' => $remaincount,
-                    'accesstoken' => ''
-				);
-				return $data;
-            }
-		}
-		// 如果密码不对，记录登录错误IP和账号次数
-		if( $user_row['password'] != md5($password.$user_row['salt']) ) {
-			$remaincount = 0;
-			if( $username_lock_arr['ipusername'] === '' ) {
-				$remaincount = $wconfig['login_lock_number'] - 1;
-				$sql = "REPLACE INTO `{$wconfig['db']['tablepre']}loginfailed` (`ipusername`, `logintime`, `count`) VALUES ('{$username}', '". W_TIMESTAMP ."', '1'), ('{$ip}', '". W_TIMESTAMP ."', '1')";
-				$wdb->query($sql);
-			} else {
-				$remaincount = $wconfig['login_lock_number'] - ($username_lock_arr['count'] + 1);
-				$sql = "UPDATE `{$wconfig['db']['tablepre']}loginfailed` SET `logintime`='". W_TIMESTAMP ."', `count`=`count`+1 WHERE `ipusername`='{$username}' OR `ipusername`='{$ip}'";
+                $remaincount = $wconfig['login_lock_number'] - ($ip_lock_arr['count'] + 1);
+                $sql = "UPDATE `{$wconfig['db']['tablepre']}loginfailed` SET `logintime`='". W_TIMESTAMP ."', `count`=`count`+1 WHERE `ipusername`='{$ip}'";
                 $wdb->query($sql);
-			}
-			if( $remaincount == 0 ) {
-				$data = array(
-					'status'      => -16,
-					'timeleft'    => $wconfig['login_lock_second'],
-					'remaincount' => 0,
-                    'accesstoken' => ''
-				);
-				return $data;
-            } else {
-				$data = array(
-					'status'      => -18,
-					'timeleft'    => 0,
-					'remaincount' => $remaincount,
-                    'accesstoken' => ''
-				);
-				return $data;
             }
-		}
-		// 登陆成功，清除过期的“IP锁”和“账户锁”
-		$expire_time = W_TIMESTAMP - ($wconfig['login_lock_second'] + 1);
-		$wdb->query("DELETE FROM `{$wconfig['db']['tablepre']}loginfailed` WHERE `logintime`<'{$expire_time}'");
-		// 更新登录时间、更新登录IP、更新登录次数
-		$sql = "UPDATE `{$wconfig['db']['tablepre']}user` SET `lastlogintime`='". W_TIMESTAMP ."', `lastloginip`='{$ip}', `logincount`=`logincount`+1 WHERE `uid`='{$user_row['uid']}'";
+            if( $remaincount == 0 ) {
+                $data = array(
+                    'status'      => -15,
+                    'timeleft'    => $wconfig['login_lock_second'],
+                    'remaincount' => 0,
+                    'accesstoken' => ''
+                );
+                return $data;
+            } else {
+                $data = array(
+                    'status'      => -17,
+                    'timeleft'    => 0,
+                    'remaincount' => $remaincount,
+                    'accesstoken' => ''
+                );
+                return $data;
+            }
+        }
+        // 如果密码不对，记录登录错误IP和账号次数
+        if( $user_row['password'] != md5($password.$user_row['salt']) ) {
+            $remaincount = 0;
+            if( $username_lock_arr['ipusername'] === '' ) {
+                $remaincount = $wconfig['login_lock_number'] - 1;
+                $sql = "REPLACE INTO `{$wconfig['db']['tablepre']}loginfailed` (`ipusername`, `logintime`, `count`) VALUES ('{$username}', '". W_TIMESTAMP ."', '1'), ('{$ip}', '". W_TIMESTAMP ."', '1')";
+                $wdb->query($sql);
+            } else {
+                $remaincount = $wconfig['login_lock_number'] - ($username_lock_arr['count'] + 1);
+                $sql = "UPDATE `{$wconfig['db']['tablepre']}loginfailed` SET `logintime`='". W_TIMESTAMP ."', `count`=`count`+1 WHERE `ipusername`='{$username}' OR `ipusername`='{$ip}'";
+                $wdb->query($sql);
+            }
+            if( $remaincount == 0 ) {
+                $data = array(
+                    'status'      => -16,
+                    'timeleft'    => $wconfig['login_lock_second'],
+                    'remaincount' => 0,
+                    'accesstoken' => ''
+                );
+                return $data;
+            } else {
+                $data = array(
+                    'status'      => -18,
+                    'timeleft'    => 0,
+                    'remaincount' => $remaincount,
+                    'accesstoken' => ''
+                );
+                return $data;
+            }
+        }
+        // 登陆成功，清除过期的“IP锁”和“账户锁”
+        $expire_time = W_TIMESTAMP - ($wconfig['login_lock_second'] + 1);
+        $wdb->query("DELETE FROM `{$wconfig['db']['tablepre']}loginfailed` WHERE `logintime`<'{$expire_time}'");
+        // 更新登录时间、更新登录IP、更新登录次数
+        $sql = "UPDATE `{$wconfig['db']['tablepre']}user` SET `lastlogintime`='". W_TIMESTAMP ."', `lastloginip`='{$ip}', `logincount`=`logincount`+1 WHERE `uid`='{$user_row['uid']}'";
         $wdb->query($sql);
-		// 赋值
-		$this->uid      = $user_row['uid'];
+        // 赋值
+        $this->uid      = $user_row['uid'];
         $this->username = $user_row['username'];
         $this->roleid   = $user_row['roleid'];
         $this->point    = $user_row['point'];
         $this->balance  = $user_row['balance'];
-		$this->realname = $user_row['realname'];
+        $this->realname = $user_row['realname'];
         $this->nickname = $user_row['nickname'];
-		// 删除用完了的变量
-		unset($username_type, $ip_lock_arr, $username_lock_arr, $ip_lock_interval, $username_lock_interval, $user_row);
-		// 返回成功结果
+        // 删除用完了的变量
+        unset($username_type, $ip_lock_arr, $username_lock_arr, $ip_lock_interval, $username_lock_interval, $user_row);
+        // 返回成功结果
         if( $mode == "accesstoken" ) {
             $data = array(
                 'status'      => 1,
@@ -612,13 +612,13 @@ class w_user {
                 'accesstoken' => ''
             );
         }
-		return $data;
-	}
-	
-	/**
+        return $data;
+    }
+    
+    /**
      * 登出
      */
-	public function logout() {
+    public function logout() {
         global $wconfig, $wdb;
         if( ($this->uid > 0) && ($this->accesstoken != '') ) {
             $wdb->query("DELETE FROM `{$wconfig['db']['tablepre']}accesstoken` WHERE `accesstoken`='{$this->accesstoken}'");
@@ -627,112 +627,112 @@ class w_user {
             $wdb->query("DELETE FROM `{$wconfig['db']['tablepre']}session` WHERE `sid`='{$this->sid}'");
         }
     }
-	
-	/* ------------------------------------------------- */
-	
-	/**
+    
+    /* ------------------------------------------------- */
+    
+    /**
      * 检查访问权限
      * @return boolean
      */
     public function check_access_permission() {
-		global $wconfig, $wdb, $m, $a;
-		// 如果权限关闭，直接返回TRUE
-		if( W_PERMISSION == 0 ) {
-			return TRUE;
-		}
-		// 定义权限标记
-		$flag = W_APPNAME . '/' . $m . '/' . $a;
-		// 游客权限判断
-		if( in_array($flag, $wconfig['permission_guest']) ) {
-			return TRUE;
-		}
-		// 如果是超级管理员，啥都能做
-		if( $this->roleid == 1 ) {
-			return TRUE;
-		}
-		// 获取角色权限
-		$sql = "SELECT `permission` FROM `{$wconfig['db']['tablepre']}role` WHERE `roleid`='{$this->roleid}'";
-		$row = $wdb->get_row($sql);
-		if( empty($row) ) {
-			return FALSE;
-		}
-		// 分割角色权限
-		$permission = explode(',', $row['permission']);
-		// 检查是否拥有权限
-		if( in_array($flag, $permission) ) {
-			return TRUE;
-		} else {
-			return FALSE;
-		}
-	}
-	
-	/**
+        global $wconfig, $wdb, $m, $a;
+        // 如果权限关闭，直接返回TRUE
+        if( W_PERMISSION == 0 ) {
+            return TRUE;
+        }
+        // 定义权限标记
+        $flag = W_APPNAME . '/' . $m . '/' . $a;
+        // 游客权限判断
+        if( in_array($flag, $wconfig['permission_guest']) ) {
+            return TRUE;
+        }
+        // 如果是超级管理员，啥都能做
+        if( $this->roleid == 1 ) {
+            return TRUE;
+        }
+        // 获取角色权限
+        $sql = "SELECT `permission` FROM `{$wconfig['db']['tablepre']}role` WHERE `roleid`='{$this->roleid}'";
+        $row = $wdb->get_row($sql);
+        if( empty($row) ) {
+            return FALSE;
+        }
+        // 分割角色权限
+        $permission = explode(',', $row['permission']);
+        // 检查是否拥有权限
+        if( in_array($flag, $permission) ) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+    
+    /**
      * 获取“当前应用”的“用户菜单”
      * @return array
      */
     public function get_curapp_user_menu() {
-		global $wconfig, $wdb, $wmenu;
-		// 如果没有当前应用的菜单，直接返回空数组
-		if( !isset($wmenu[W_APPNAME]) ) {
-			return array();
-		}
-		// 获得当前app的module和action菜单
-		$curapp_menu = array();
-		foreach($wmenu as $key => $val) {
-			if( (strpos($key, W_APPNAME) === 0) && (substr_count($key, '/') > 0) ) {
-				$curapp_menu[$key] = $val;
-			}
-		}
-		// 定义权限变量
-		$permission = array();
-		// 如果是超级管理员，获取当前应用的所有权限，否则从数据库查询对应的角色权限
-		if( $this->roleid == 1 ) {
-			foreach($curapp_menu as $key => $val) {
-				$permission[] = $key;
-			}
-		} else {
-			// 获取用户的角色权限
-			$sql = "SELECT * FROM `{$wconfig['db']['tablepre']}role` WHERE `roleid`='{$this->roleid}'";
-			$row = $wdb->get_row($sql);
-			// 如果没有该角色，返回空数组
-			if( empty($row) ) {
-				return array();
-			}
-			// 分割“权限字符串”为数组
-			$permission = explode(',', $row['permission']);
-		}
-		// 定义当前app菜单module层变量
-		$mod_menu = array();
-		// 定义当前app菜单module层下的action层变量
-		$act_menu = array();
-		// 遍历当前app菜单，获取对应的权限菜单
-		foreach($curapp_menu as $key => $val) {
-			$keyarr = explode('/', $key);
-			$count  = substr_count($key, '/');
-			if( ($count == 1) && in_array($key, $permission) ) {
-				$val['url']  = '?m=' . $keyarr[1];
+        global $wconfig, $wdb, $wmenu;
+        // 如果没有当前应用的菜单，直接返回空数组
+        if( !isset($wmenu[W_APPNAME]) ) {
+            return array();
+        }
+        // 获得当前app的module和action菜单
+        $curapp_menu = array();
+        foreach($wmenu as $key => $val) {
+            if( (strpos($key, W_APPNAME) === 0) && (substr_count($key, '/') > 0) ) {
+                $curapp_menu[$key] = $val;
+            }
+        }
+        // 定义权限变量
+        $permission = array();
+        // 如果是超级管理员，获取当前应用的所有权限，否则从数据库查询对应的角色权限
+        if( $this->roleid == 1 ) {
+            foreach($curapp_menu as $key => $val) {
+                $permission[] = $key;
+            }
+        } else {
+            // 获取用户的角色权限
+            $sql = "SELECT * FROM `{$wconfig['db']['tablepre']}role` WHERE `roleid`='{$this->roleid}'";
+            $row = $wdb->get_row($sql);
+            // 如果没有该角色，返回空数组
+            if( empty($row) ) {
+                return array();
+            }
+            // 分割“权限字符串”为数组
+            $permission = explode(',', $row['permission']);
+        }
+        // 定义当前app菜单module层变量
+        $mod_menu = array();
+        // 定义当前app菜单module层下的action层变量
+        $act_menu = array();
+        // 遍历当前app菜单，获取对应的权限菜单
+        foreach($curapp_menu as $key => $val) {
+            $keyarr = explode('/', $key);
+            $count  = substr_count($key, '/');
+            if( ($count == 1) && in_array($key, $permission) ) {
+                $val['url']  = '?m=' . $keyarr[1];
                 $val['flag'] = $key;
-				$mod_menu[] = $val;
-			}
-			if( ($count == 2) && in_array($key, $permission) ) {
-				$val['url']  = '?m=' . $keyarr[1] . '&a=' . $keyarr[2];
+                $mod_menu[] = $val;
+            }
+            if( ($count == 2) && in_array($key, $permission) ) {
+                $val['url']  = '?m=' . $keyarr[1] . '&a=' . $keyarr[2];
                 $val['flag'] = $key;
-				$act_menu[] = $val;
-			}
-		}
-		unset($curapp_menu);
-		// 把action层压入module层
-		foreach($mod_menu as $mkey => $mval) {
-			foreach($act_menu as $akey => $aval) {
+                $act_menu[] = $val;
+            }
+        }
+        unset($curapp_menu);
+        // 把action层压入module层
+        foreach($mod_menu as $mkey => $mval) {
+            foreach($act_menu as $akey => $aval) {
                 if( strpos($aval['url'], $mval['url']) === 0 ) {
-					$mod_menu[$mkey]['children'][] = $aval;
-				}
-			}
-		}
-		unset($act_menu);
-		// 返回菜单
-		return $mod_menu;
-	}
+                    $mod_menu[$mkey]['children'][] = $aval;
+                }
+            }
+        }
+        unset($act_menu);
+        // 返回菜单
+        return $mod_menu;
+    }
     
     /**
      * 记录用户操作日志
@@ -750,5 +750,5 @@ class w_user {
             $GLOBALS['wdb']->query($sql);
         }
     }
-	
+    
 }

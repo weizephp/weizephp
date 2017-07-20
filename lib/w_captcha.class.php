@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `w_captcha` (
 
 
 class w_captcha {
-	
+    
     /**
      * 创建 captcha key
      * @return string
@@ -95,8 +95,8 @@ class w_captcha {
             $shuffled = substr(str_shuffle($str), -$length);
             
             $captcha_expire = W_TIMESTAMP - $wconfig['captcha']['expire'];
-		    $sql = "DELETE FROM `{$wconfig['db']['tablepre']}captcha` WHERE `lastvisit`<'{$captcha_expire}'";
-		    $wdb->query($sql);
+            $sql = "DELETE FROM `{$wconfig['db']['tablepre']}captcha` WHERE `lastvisit`<'{$captcha_expire}'";
+            $wdb->query($sql);
             
             $sql = "REPLACE INTO `{$wconfig['db']['tablepre']}captcha` (`cid`, `lastvisit`, `code`, `verified`, `count`) VALUES ('{$keys['cid']}', '". W_TIMESTAMP ."', '{$shuffled}',  '0', '0')";
             $wdb->query($sql);
@@ -135,39 +135,39 @@ class w_captcha {
      */
     public function check($captchakey, $captchaval) {
         global $wconfig, $wdb;
-		
-		// 接收验证码值健(key)，并分割出cid,time,sign数据
-		$keys = $this->splitkey($captchakey);
-		
-		// 检查验证码签名是否有效
-		$verify_sign = w_sign( array($keys['cid'], $keys['time'], 'captcha', $wconfig['authkey']) );
-		if( $verify_sign !== $keys['sign'] ) {
-			return -1;
-		}
-		
-		// 获取验证码信息
-		$sql = "SELECT * FROM `{$wconfig['db']['tablepre']}captcha` WHERE `cid`='{$keys['cid']}'";
-		$row = $wdb->get_row($sql);
-		
-		// 检查验证码是否已过期
-		if( empty($row) ) {
-			return -1;
-		}
+        
+        // 接收验证码值健(key)，并分割出cid,time,sign数据
+        $keys = $this->splitkey($captchakey);
+        
+        // 检查验证码签名是否有效
+        $verify_sign = w_sign( array($keys['cid'], $keys['time'], 'captcha', $wconfig['authkey']) );
+        if( $verify_sign !== $keys['sign'] ) {
+            return -1;
+        }
+        
+        // 获取验证码信息
+        $sql = "SELECT * FROM `{$wconfig['db']['tablepre']}captcha` WHERE `cid`='{$keys['cid']}'";
+        $row = $wdb->get_row($sql);
+        
+        // 检查验证码是否已过期
+        if( empty($row) ) {
+            return -1;
+        }
         if( $row['verified'] > 0 ) {
             return -1;
         }
-		if( $row['count'] > 6 ) {
-			return -1;
-		}
+        if( $row['count'] > 6 ) {
+            return -1;
+        }
         $last_expire = intval($row['lastvisit']) + $wconfig['captcha']['expire'];
         if( $last_expire < W_TIMESTAMP ) {
             return -1;
         }
-		
-		// 检查验证码输入是否错误
-		if( strtoupper($captchaval) == $row['code'] ) {
+        
+        // 检查验证码输入是否错误
+        if( strtoupper($captchaval) == $row['code'] ) {
             return 1;
-		} else {
+        } else {
             return 0;
         }
     }

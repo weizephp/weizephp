@@ -3,7 +3,7 @@
  * 网站首页模板
  */
 if( !defined('IN_WEIZEPHP') ) {
-	exit('Access Denied');
+    exit('Access Denied');
 }
 include $wconfig['theme_path'] . '/site_cfg.inc.php';
 include W_ROOT_PATH . '/config/config_nav.inc.php';
@@ -68,5 +68,5 @@ include W_ROOT_PATH . '/config/config_nav.inc.php';
                 </div>
             </div>
         </div>
-	</body>
+    </body>
 </html>

@@ -38,13 +38,13 @@ if( !$DB->set_charset($dbcharset) ) {
 // 选择用于数据库查询的默认数据库
 $result = $DB->select_db($dbname);
 if( !$result ) {
-	if( $DB->db_create_db($dbname) ) {
-	    // 重新选择数据库
-		$DB->select_db($dbname);
-	} else {
-	    // 不能创建数据库，请手动创建
-		exit('Can\'t create '. $dbname .'!');
-	}
+    if( $DB->db_create_db($dbname) ) {
+        // 重新选择数据库
+        $DB->select_db($dbname);
+    } else {
+        // 不能创建数据库，请手动创建
+        exit('Can\'t create '. $dbname .'!');
+    }
 }
 
 +--------------------------------------

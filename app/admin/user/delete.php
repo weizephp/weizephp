@@ -31,7 +31,7 @@ $row = $wdb->get_row($sql);
 
 $sql = "DELETE FROM `{$wconfig['db']['tablepre']}user` WHERE `uid`='{$uid}'";
 if( $wdb->query($sql) ) {
-	// 这里还要删除用户的附件等数据...
+    // 这里还要删除用户的附件等数据...
     $wuser->actionlog("删除{$row['username']}用户");
     exit('{"status":1, "msg":"删除成功！"}');
 } else {

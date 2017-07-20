@@ -4,7 +4,7 @@
  */
 
 if( !defined('IN_WEIZEPHP') ) {
-	exit('Access Denied');
+    exit('Access Denied');
 }
 
 $spid = isset($_GET['spid']) ? intval($_GET['spid']) : 0;

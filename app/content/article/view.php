@@ -4,7 +4,7 @@
  */
 
 if( !defined('IN_WEIZEPHP') ) {
-	exit('Access Denied');
+    exit('Access Denied');
 }
 
 $aid = isset($_GET['aid']) ? intval($_GET['aid']) : 0;

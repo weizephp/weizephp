@@ -4,7 +4,7 @@
  */
 
 if( !defined('IN_WEIZEPHP') ) {
-	exit('Access Denied');
+    exit('Access Denied');
 }
 
 include $wconfig['theme_path'] . '/content/home/index.html.php';

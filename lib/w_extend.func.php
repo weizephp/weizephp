@@ -10,7 +10,7 @@
  */
 
 if( !defined('IN_WEIZEPHP') ) {
-	exit('Access Denied');
+    exit('Access Denied');
 }
 
 /** ------------------------------------------------------------------- */
@@ -69,21 +69,21 @@ function w_scandir($directory, $sorting_order = 0) {
 /*
 // 无限分类数据结构
 $categories = array(
-	array('cid' => 1,  'pid' => 0,  'displayorder'=>'9', 'name' => '广西壮族自治区'),
-	
-	array('cid' => 2,  'pid' => 1,  'displayorder'=>'2', 'name' => '柳州市'),
-	array('cid' => 3,  'pid' => 2,  'displayorder'=>'9', 'name' => '融水苗族自治县'),
-	array('cid' => 4,  'pid' => 3,  'displayorder'=>'9', 'name' => '杆洞乡'),
-	array('cid' => 5,  'pid' => 4,  'displayorder'=>'9', 'name' => '高强村'),
-	array('cid' => 6,  'pid' => 5,  'displayorder'=>'3', 'name' => '上坪屯'),
-	array('cid' => 7,  'pid' => 5,  'displayorder'=>'2', 'name' => '中坪屯'),
-	array('cid' => 8,  'pid' => 5,  'displayorder'=>'1', 'name' => '下坪屯'),
-	
-	array('cid' => 9,  'pid' => 1,  'displayorder'=>'1', 'name' => '桂林市'),
-	array('cid' => 10, 'pid' => 9,  'displayorder'=>'9', 'name' => '阳朔县'),
-	array('cid' => 11, 'pid' => 10, 'displayorder'=>'9', 'name' => '白沙镇'),
-	array('cid' => 12, 'pid' => 11, 'displayorder'=>'2', 'name' => '古板村'),
-	array('cid' => 13, 'pid' => 11, 'displayorder'=>'1', 'name' => '蔡村'),
+    array('cid' => 1,  'pid' => 0,  'displayorder'=>'9', 'name' => '广西壮族自治区'),
+    
+    array('cid' => 2,  'pid' => 1,  'displayorder'=>'2', 'name' => '柳州市'),
+    array('cid' => 3,  'pid' => 2,  'displayorder'=>'9', 'name' => '融水苗族自治县'),
+    array('cid' => 4,  'pid' => 3,  'displayorder'=>'9', 'name' => '杆洞乡'),
+    array('cid' => 5,  'pid' => 4,  'displayorder'=>'9', 'name' => '高强村'),
+    array('cid' => 6,  'pid' => 5,  'displayorder'=>'3', 'name' => '上坪屯'),
+    array('cid' => 7,  'pid' => 5,  'displayorder'=>'2', 'name' => '中坪屯'),
+    array('cid' => 8,  'pid' => 5,  'displayorder'=>'1', 'name' => '下坪屯'),
+    
+    array('cid' => 9,  'pid' => 1,  'displayorder'=>'1', 'name' => '桂林市'),
+    array('cid' => 10, 'pid' => 9,  'displayorder'=>'9', 'name' => '阳朔县'),
+    array('cid' => 11, 'pid' => 10, 'displayorder'=>'9', 'name' => '白沙镇'),
+    array('cid' => 12, 'pid' => 11, 'displayorder'=>'2', 'name' => '古板村'),
+    array('cid' => 13, 'pid' => 11, 'displayorder'=>'1', 'name' => '蔡村'),
 );
 */
 

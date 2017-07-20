@@ -12,7 +12,7 @@
  */
 
 if( !defined('W_PERMISSION') || !defined('W_APPNAME') ) {
-	exit('Access Denied');
+    exit('Access Denied');
 }
 
 /** ------------------------------------------------------------------- */
@@ -42,7 +42,7 @@ include W_ROOT_PATH . '/weize/function.php';
 // 记录错误日志
 if( $wconfig['error_reporting'] === true ) {
     define('W_DISPLAY_DEBUG', true);
-	set_error_handler('w_error_handler');
+    set_error_handler('w_error_handler');
     register_shutdown_function('w_shutdown');
 }
 
@@ -71,7 +71,7 @@ $a = isset($_GET['a']) && (preg_match('/^[a-z_]+$/', $_GET['a']) == 1) ? $_GET['
 if( isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') ) {
     $isajax = 1;
 } else if( isset($_GET['accesstoken']) || isset($_POST['accesstoken']) ) {
-	$isajax = 1;
+    $isajax = 1;
 } else if( isset($_GET['isajax']) && ($_GET['isajax'] == 1) ) {
     $isajax = 1;
 } else if( isset($_POST['isajax']) && ($_POST['isajax'] == 1) ) {

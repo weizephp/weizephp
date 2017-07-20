@@ -23,23 +23,23 @@ $where = "";
 // 定义搜索关键字变量
 $wd = "";
 if( isset($_GET['wd']) && !empty($_GET['wd']) ) {
-	$wd    = htmlspecialchars(trim($_GET['wd']));
-	$where = " WHERE `title` LIKE '%{$wd}%' ";
+    $wd    = htmlspecialchars(trim($_GET['wd']));
+    $where = " WHERE `title` LIKE '%{$wd}%' ";
 }
 
 // 按分类查看
 $cur_categoryname = '≡ 全部分类 ≡';
 $cid = isset($_GET['cid']) ? intval($_GET['cid']) : 0;
 if( $cid > 0 ) {
-	$cid = intval($_GET['cid']);
-	$where      = " WHERE `cid`='{$cid}' ";
-	// 获取当前分类名
-	foreach($categories as $v) {
-	    if($v['cid'] == $cid) {
-	        $cur_categoryname = htmlspecialchars($v['name']);
-	        break;
-	    }
-	}
+    $cid = intval($_GET['cid']);
+    $where      = " WHERE `cid`='{$cid}' ";
+    // 获取当前分类名
+    foreach($categories as $v) {
+        if($v['cid'] == $cid) {
+            $cur_categoryname = htmlspecialchars($v['name']);
+            break;
+        }
+    }
 }
 
 // 获取数据

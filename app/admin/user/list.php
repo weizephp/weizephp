@@ -21,8 +21,8 @@ foreach($users as $uk => $uv) {
     $users[$uk]['rolename'] = '未定义角色';
     foreach($roles as $rv) {
         if($uv['roleid'] == $rv['roleid']) {
-			$users[$uk]['rolename'] = htmlspecialchars($rv['rolename']);
-		}
+            $users[$uk]['rolename'] = htmlspecialchars($rv['rolename']);
+        }
     }
 }
 

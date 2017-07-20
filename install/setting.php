@@ -214,9 +214,9 @@ if(!isset($_POST['dbhost'])) {
     $cfg_content = str_replace("\$wconfig['db']['port']     = '3306';",      "\$wconfig['db']['port']     = '{$dbport}';", $cfg_content);
     // 数据库表前缀
     $cfg_content = str_replace("\$wconfig['db']['tablepre'] = 'w_';",        "\$wconfig['db']['tablepre'] = '{$tablepre}';", $cfg_content);
-	
-	// COOKIE随机前缀
-	$random_cookie_pre = substr(str_shuffle($random_str), 0, 4);
+    
+    // COOKIE随机前缀
+    $random_cookie_pre = substr(str_shuffle($random_str), 0, 4);
     $cfg_content = str_replace("\$wconfig['cookie']['prefix'] = 'Wz_';", "\$wconfig['cookie']['prefix'] = '{$random_cookie_pre}_';", $cfg_content);
     
     // 更改配置文件

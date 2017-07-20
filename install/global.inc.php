@@ -14,7 +14,7 @@
  */
 
 if(is_file('install.lock')) {
-	exit('Installed!');
+    exit('Installed!');
 }
 
 /**

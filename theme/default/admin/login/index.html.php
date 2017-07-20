@@ -101,9 +101,9 @@ if(!defined('IN_WEIZEPHP')) {
                 password = md5(password);
                 $.post('?m=login&a=login', {username: username, password: password, captchakey: captchakey, captchaval: captchaval}, function(data) {
                     if(data.status == 1) {
-                    	window.location.href = '?m=home';
+                        window.location.href = '?m=home';
                     } else {
-                    	w_dialog_error(data.msg);
+                        w_dialog_error(data.msg);
                     }
                 }, 'json');
                 return false;

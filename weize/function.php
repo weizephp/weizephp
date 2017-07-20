@@ -12,7 +12,7 @@
  */
 
 if( !defined('IN_WEIZEPHP') ) {
-	exit('Access Denied');
+    exit('Access Denied');
 }
 
 /** ------------------------------------------------------------------- */
@@ -131,12 +131,12 @@ function w_get_client_ip() {
  * @return string
  */
 function w_random($length = 6, $chars = '123456789abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ') {
-	$hash = '';
-	$max = strlen($chars) - 1;
-	for($i = 0; $i < $length; $i++) {
-		$hash .= $chars[mt_rand(0, $max)];
-	}
-	return $hash;
+    $hash = '';
+    $max = strlen($chars) - 1;
+    for($i = 0; $i < $length; $i++) {
+        $hash .= $chars[mt_rand(0, $max)];
+    }
+    return $hash;
 }
 
 /** ------------------------------------------------------------------- */
@@ -147,12 +147,12 @@ function w_random($length = 6, $chars = '123456789abcdefghijklmnpqrstuvwxyzABCDE
  * @return string
  */
 function w_sign($array) {
-	sort($array);
-	$string = "";
-	foreach($array as $val) {
-		$string .= $val;
-	}
-	return md5($string);
+    sort($array);
+    $string = "";
+    foreach($array as $val) {
+        $string .= $val;
+    }
+    return md5($string);
 }
 
 /** ------------------------------------------------------------------- */
@@ -210,9 +210,9 @@ function w_error_handler($errno, $errstr, $errfile, $errline) {
  * and get the last occurred error. 和获取系统最后的错误。
  */
 function w_shutdown() {
-	if(isset($GLOBALS["wdb"])) {
-		$GLOBALS["wdb"]->close();
-	}
+    if(isset($GLOBALS["wdb"])) {
+        $GLOBALS["wdb"]->close();
+    }
     $errinfo = error_get_last();
     if(!empty($errinfo) && isset($errinfo['type'])) {
         w_error_log($errinfo['type'], $errinfo['message'], $errinfo['file'], $errinfo['line']);
@@ -230,7 +230,7 @@ function w_shutdown() {
  */
 function w_setcookie($name, $value, $expire = 0, $httponly = false) {
     global $wconfig;
-	$secure = $_SERVER['SERVER_PORT'] == 443 ? true : false;
+    $secure = $_SERVER['SERVER_PORT'] == 443 ? true : false;
     $path   = $httponly && PHP_VERSION < '5.2.0' ? $wconfig['cookie']['path'] . '; HttpOnly' : $wconfig['cookie']['path'];
     if(PHP_VERSION < '5.2.0') {
         setcookie($name, $value, $expire, $path, $wconfig['cookie']['domain'], $secure);

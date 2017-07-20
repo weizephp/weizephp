@@ -13,8 +13,8 @@ $where = "";
 // 定义搜索关键字变量
 $wd = "";
 if( isset($_GET['wd']) && !empty($_GET['wd']) ) {
-	$wd    = htmlspecialchars(trim($_GET['wd']));
-	$where = " WHERE `title` LIKE '%{$wd}%' ";
+    $wd    = htmlspecialchars(trim($_GET['wd']));
+    $where = " WHERE `title` LIKE '%{$wd}%' ";
 }
 
 // 获取数据

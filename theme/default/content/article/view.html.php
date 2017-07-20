@@ -3,7 +3,7 @@
  * 网站首页模板
  */
 if( !defined('IN_WEIZEPHP') ) {
-	exit('Access Denied');
+    exit('Access Denied');
 }
 include $wconfig['theme_path'] . '/site_cfg.inc.php';
 ?><!DOCTYPE HTML>
@@ -43,6 +43,6 @@ include $wconfig['theme_path'] . '/site_cfg.inc.php';
             <div class="a-s-footer">
                 <p>Copyright &copy; 2013 - 2113 WeizePHP. <a target="_blank" href="http://opensource.org/licenses/MIT" rel="nofollow">MIT License</a></p>
             </div>
-		</div>
-	</body>
+        </div>
+    </body>
 </html>

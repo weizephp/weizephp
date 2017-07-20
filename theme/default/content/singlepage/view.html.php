@@ -3,7 +3,7 @@
  * 网站首页模板
  */
 if( !defined('IN_WEIZEPHP') ) {
-	exit('Access Denied');
+    exit('Access Denied');
 }
 include $wconfig['theme_path'] . '/site_cfg.inc.php';
 ?><!DOCTYPE HTML>
@@ -34,7 +34,7 @@ include $wconfig['theme_path'] . '/site_cfg.inc.php';
             <div class="a-s-footer">
                 <p>Copyright &copy; 2013 - 2113 WeizePHP. <a target="_blank" href="http://opensource.org/licenses/MIT" rel="nofollow">MIT License</a></p>
             </div>
-		</div>
+        </div>
         <?php if( strpos($row['content'], '<pre class="brush:') !== false ) {?>
         <!-- 代码高亮 -->
         <script src="<?php echo $wconfig['public_path'];?>/ueditor/ueditor.parse.min.js"></script>
@@ -44,5 +44,5 @@ include $wconfig['theme_path'] . '/site_cfg.inc.php';
             });
         </script>
         <?php }?>
-	</body>
+    </body>
 </html>

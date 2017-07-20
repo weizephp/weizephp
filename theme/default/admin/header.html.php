@@ -1,6 +1,6 @@
 <?php
 if( !defined('IN_WEIZEPHP') ) {
-	exit('Access Denied');
+    exit('Access Denied');
 }
 ?>
 <div class="w-header container-fluid navbar-inverse">

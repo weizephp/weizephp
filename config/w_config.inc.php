@@ -69,7 +69,7 @@ $wconfig['permission_guest'] = array(
     // 通用功能
     'general/captcha/createkey',
     'general/captcha/display',
-	// 应用API
+    // 应用API
     'appapi/login/login',
     'appapi/login/logout',
     //...

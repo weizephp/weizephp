@@ -12,7 +12,7 @@ $list = $wdb->get_all($sql);
 
 $site_cfg = array();
 foreach($list as $val) {
-	$site_cfg[$val['ckey']] = htmlspecialchars($val['cvalue']);
+    $site_cfg[$val['ckey']] = htmlspecialchars($val['cvalue']);
 }
 
 include $wconfig['theme_path'] . '/admin/system/config.html.php';

@@ -109,7 +109,7 @@ if( !defined('IN_WEIZEPHP') ) {
             var ue = UE.getEditor('w-ueditor-container', {
                 //topOffset: 50,
                 //autoFloatEnabled: false,
-                serverUrl: "general.php?m=ueditor&a=controlleradmin&formtoken=<?php echo $wuser->formtoken;?>",
+                serverUrl: "<?php echo w_get_siteurl() . 'general.php?m=ueditor&a=controlleradmin&formtoken=' . $wuser->formtoken;?>",
                 initialFrameHeight: 600
             });
             // 编辑器全屏bug处理
